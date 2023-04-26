@@ -1,7 +1,7 @@
 ---
 title: "Become a morning person with the help of alarm clock"
 description: "meta description"
-image: 1667157825/sample.jpg
+image: v1667157825/sample.jpg
 date: 2021-02-03T16:56:47+06:00
 draft: false
 authors: ["Mark Dinn"]

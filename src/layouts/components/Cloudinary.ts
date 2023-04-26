@@ -25,7 +25,7 @@ export interface CloudinaryProps {
 }
 
 export const cloudinary = (options: CloudinaryProps) => {
-  let baseUri = `https://res.cloudinary.com/${import.meta.env.CLOUDINARY_NAME}`
+  let baseUri = `https://res.cloudinary.com/${import.meta.env.PUBLIC_CLOUDINARY_NAME}`
   // options.type image | video | raw
   baseUri += `/${options.type || 'image'}`
   // options.delivery upload | private | authenticated | list |fetch | ... | text | asset

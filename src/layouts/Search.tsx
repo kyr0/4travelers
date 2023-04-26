@@ -2,8 +2,9 @@ import config from "@config/config.json";
 import dateFormat from "@lib/utils/dateFormat";
 import { humanize, slugify } from "@lib/utils/textConverter";
 import Fuse from "fuse.js";
-import { useEffect, useRef, useState } from "preact/compat";
-import { BiCalendarEdit, BiCategoryAlt } from "react-icons/bi";
+import { useEffect, useRef, useState } from "react";
+import { BiCalendarEdit, BiCategoryAlt } from "react-icons/bi/index.js";
+import { cloudinary } from "./components/Cloudinary";
 const { summary_length } = config.settings;
 
 export type SearchItem = {
@@ -99,7 +100,7 @@ export default function SearchBar({ searchList }: Props) {
               >
                 <img
                   className="w-full transition duration-300 group-hover:scale-[1.03]"
-                  src={item.data.image}
+                  src={cloudinary({ src: item.data.image, width: 445, height: 230 }).uri}
                   alt={item.data.title}
                   width={445}
                   height={230}

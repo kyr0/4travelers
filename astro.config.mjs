@@ -1,7 +1,7 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
-import preact from "@astrojs/preact";
+import react from "@astrojs/react";
 import { defineConfig } from "astro/config";
 import config from "./src/config/config.json";
 import cloudflare from "@astrojs/cloudflare";
@@ -17,7 +17,7 @@ export default defineConfig({
   base: config.site.base_path,
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   integrations: [
-    preact({ compat: true }),
+    react(),
     sitemap(),
     tailwind({
       config: {

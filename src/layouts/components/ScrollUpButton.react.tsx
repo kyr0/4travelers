@@ -1,6 +1,6 @@
 import theme from "@config/theme.json";
-import { useLayoutEffect, useState } from "preact/compat";
-import { BiArrowToTop } from "react-icons/bi";
+import { useLayoutEffect, useState } from "react";
+import { BiArrowToTop } from "react-icons/bi/index.js";
 
 export const ScrollUpButton = () => {
   const [visible, setVisible] = useState(false);

@@ -1,6 +1,6 @@
 ---
 import { markdownify } from "@lib/utils/textConverter";
-import { BsArrowRightCircle } from "react-icons/bs";
+import { BsArrowRightCircle } from "react-icons/bs/index.js";
 const { authors } = Astro.props;
 ---
 
@@ -33,7 +33,7 @@ const { authors } = Astro.props;
           class="text-primary inline-flex items-center transition duration-200 hover:opacity-70"
         >
           Read More{" "}
-          <BsArrowRightCircle className="ml-2 inline" client:only="preact" />
+          <BsArrowRightCircle className="ml-2 inline"  />
         </a>
       </div>
     ))
