@@ -4,7 +4,7 @@ import Base from "@layouts/Base.astro";
 import { markdownify } from "@lib/utils/textConverter";
 import { getEntryBySlug } from "astro:content";
 import Heading from "../layouts/partials/Heading.astro"
-import { Content, components } from '../content/about/index.mdx';
+import { Content } from '../content/about/index.mdx';
 import Cloudinary from "@layouts/components/Cloudinary.astro";
 
 export const prerender = true
@@ -39,7 +39,7 @@ const { title, description, meta_title, image, what_i_do } = entry.data;
           <h1 set:html={markdownify(title)} class="h3 mb-8 font-secondary" />
 
           <div class="content">
-            <Content components={{ ...components, Cloudinary }} />
+            <Content components={{ Cloudinary }} />
           </div>
           <a href="/contact" class="btn btn-primary text-white py-2">Get In Touch</a>
         </div>
