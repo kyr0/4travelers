@@ -7,6 +7,7 @@ import dateFormat from "@lib/utils/dateFormat";
 import similerItems from "@lib/utils/similarItems";
 import { humanize,markdownify,slugify } from "@lib/utils/textConverter";
 import { BiCalendarEdit,BiCategoryAlt, BiTime } from "react-icons/bi/index.js";
+import Cloudinary from "./components/Cloudinary.astro";
 
 const allAuthors = await getSinglePage("authors");
 const posts = await getSinglePage("posts");
@@ -83,15 +84,8 @@ const { title, description, authors, categories, image, date, tags } =
       </div>
 
       <div class="col-12 mt-8 mb-2">
-        {image && (
-          <img
-            src={image}
-            height={500}
-            width={1000}
-            alt={title}
-            class="rounded-lg"
-          />
-        )}
+        <!-- TODO: image gallery -->
+        <Cloudinary src={image} alt={title} class="rounded-lg" />
       </div>
 
       <div class="md:col-10">

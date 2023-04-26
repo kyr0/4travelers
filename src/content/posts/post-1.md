@@ -2,7 +2,7 @@
 title: "How to make toys from old Olarpaper"
 description: "meta description"
 date: 2022-04-04T05:00:00Z
-image: "/images/posts/01.jpg"
+image: v1675069441/alessio-soggetti-8jeWeKdygfk-unsplash-1000x1200_okqqkj.jpg
 categories: ["art"]
 authors: ["Mark Dinn"]
 tags: ["diy", "toy"]

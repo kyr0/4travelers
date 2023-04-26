@@ -1,0 +1,11 @@
+---
+import { CloudinaryProps, cloudinary } from './Cloudinary'
+const { uri, alt } = cloudinary({
+  quality: 75,
+  format: 'webp',
+  width: 936,
+  ...Astro.props
+} as CloudinaryProps)
+---
+
+<img src={uri} alt={alt} class={Astro.props.class || ''}/>

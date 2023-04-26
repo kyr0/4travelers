@@ -6,10 +6,10 @@
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
-    "logo": "/images/logo.png",
-    "logo_width": "200",
-    "logo_height": "34",
-    "logo_text": "4 Travelers"
+    "logo": "/images/logo-long.svg",
+    "logo_width": "278",
+    "logo_height": "40",
+    "logo_text": "4 Travellers"
   },
 
   "settings": {
