@@ -1,0 +1,24 @@
+{
+   "version": 1,
+   "include": ["/*"],
+   "exclude": [],
+  "routes": [
+    {
+      "routePath": "/:path*",
+      "mountPath": "/",
+      "method": "",
+      "module": [
+        "[[path]].js:onRequest"
+      ]
+    },
+    {
+      "routePath": "/",
+      "mountPath": "/",
+      "method": "",
+      "middleware": [
+        "_middleware.ts:onRequest"
+      ]
+    }
+  ],
+  "baseURL": "/"
+}
