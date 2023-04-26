@@ -17,6 +17,8 @@
   },
   "fonts": {
     "font_family": {
+      "secondary": "Handlee",
+      "secondary_type": "sans-serif",
       "primary": "Mulish:wght@400;600;700",
       "primary_type": "sans-serif"
     },

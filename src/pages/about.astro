@@ -3,11 +3,13 @@
 import Base from "@layouts/Base.astro";
 import { markdownify } from "@lib/utils/textConverter";
 import { getEntryBySlug } from "astro:content";
+import Heading from "../layouts/partials/Heading.astro"
+import { Content, components } from '../content/about/index.mdx';
+import Cloudinary from "@layouts/components/Cloudinary.astro";
 
 export const prerender = true
 
 const entry = await getEntryBySlug("about", "index");
-const { Content } = await entry.render();
 const { title, description, meta_title, image, what_i_do } = entry.data;
 ---
 
@@ -34,10 +36,10 @@ const { title, description, meta_title, image, what_i_do } = entry.data;
           )}
         </div>
         <div class="sm:col-7 md:col-8">
-          <h1 set:html={markdownify(title)} class="h3 mb-8" />
+          <h1 set:html={markdownify(title)} class="h3 mb-8 font-secondary" />
 
           <div class="content">
-            <Content />
+            <Content components={{ ...components, Cloudinary }} />
           </div>
           <a href="/contact" class="btn btn-primary text-white py-2">Get In Touch</a>
         </div>
@@ -52,7 +54,7 @@ const { title, description, meta_title, image, what_i_do } = entry.data;
         {what_i_do.items.map((item: any) => (
           <div class="lg:col-4 md:col-6">
             <i class="{{.icon}} fa-3x text-primary mb-4"></i>
-            <h4 class="text-dark font-weight-700 mb-3">{item.title}</h4>
+            <h4 class="text-dark font-weight-700 mb-3 font-secondary">{item.title}</h4>
             <p>{item.description}</p>
           </div>
         ))}
