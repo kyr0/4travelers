@@ -1365,6 +1365,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"astro-webmanifest@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "astro-webmanifest@npm:0.6.0"
+  dependencies:
+    sharp: ^0.31.3
+    valid-filename: ^4.0.0
+    zod: ^3.21.4
+  checksum: f78073ea7aee9a826143fd583b31ea19306a215217b2a9c3e8bdb5306edf4d8142fb3de4dd77fac4998bff7a89d106ddcd44d54e2a6ef94e74a4dc7b5133bf9b
+  languageName: node
+  linkType: hard
+
 "astro@npm:^2.0.11":
   version: 2.3.1
   resolution: "astro@npm:2.3.1"
@@ -1538,6 +1549,7 @@ __metadata:
     "@types/marked": ^4.0.8
     "@types/react": ^18.0.28
     astro: ^2.0.11
+    astro-webmanifest: ^0.6.0
     autoprefixer: ^10.4.14
     date-fns: ^2.29.3
     date-fns-tz: ^2.0.0
@@ -2461,6 +2473,13 @@ __metadata:
   dependencies:
     format: ^0.2.0
   checksum: c9b30f47d95769177130a9409976a899ed31eb598450fbad5b0d39f2f5f56d5f4a9ff9257e0bee8407cb0fc3ce37165657888c6aa6d78472e403893104329b72
+  languageName: node
+  linkType: hard
+
+"filename-reserved-regex@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "filename-reserved-regex@npm:3.0.0"
+  checksum: 1803e19ce64d7cb88ee5a1bd3ce282470a5c263987269222426d889049fc857e302284fa71937de9582eba7a9f39539557d45e0562f2fa51cade8efc68c65dd9
   languageName: node
   linkType: hard
 
@@ -6426,6 +6445,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"valid-filename@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "valid-filename@npm:4.0.0"
+  dependencies:
+    filename-reserved-regex: ^3.0.0
+  checksum: 7486511751ade6ff9df254aec0aaad7c7461ff767e71e0bb2083f597d29c0e464919232594c53438b395e14166244dd8e69716cd661d8e7449ff0c916f9792cc
+  languageName: node
+  linkType: hard
+
 "vfile-location@npm:^4.0.0":
   version: 4.1.0
   resolution: "vfile-location@npm:4.1.0"
@@ -6738,7 +6766,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.17.3, zod@npm:^3.20.6":
+"zod@npm:^3.17.3, zod@npm:^3.20.6, zod@npm:^3.21.4":
   version: 3.21.4
   resolution: "zod@npm:3.21.4"
   checksum: f185ba87342ff16f7a06686767c2b2a7af41110c7edf7c1974095d8db7a73792696bcb4a00853de0d2edeb34a5b2ea6a55871bc864227dace682a0a28de33e1f

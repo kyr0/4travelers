@@ -89,7 +89,7 @@ const { className, posts, fluid } = Astro.props;
           {post.body?.slice(0, Number(i === 0 && fluid != false ? summary_length * 2 : summary_length))}...
         </p>
           <a href={post.slug} class="inline-flex items-center text-primary transition duration-200 hover:opacity-70">
-          Read More <BsArrowRightCircle className="inline ml-2" />
+          Read More <BsArrowRightCircle className="inline ml-2" client:only="preact" />
         </a>
       </div>
     ))

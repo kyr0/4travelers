@@ -33,7 +33,7 @@ import {
   IoLogoWhatsapp,
   IoLogoYoutube,
   IoMail,
-} from "react-icons/io5/index.js";
+} from "react-icons/io5";
 
 const {
   facebook,
@@ -68,6 +68,7 @@ const {
   skype,
   website,
 } = source;
+
 ---
 
 <ul class={className}>
@@ -80,7 +81,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoFacebook />
+          <IoLogoFacebook client:only="preact" />
         </a>
       </li>
     )
@@ -94,7 +95,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoTwitter />
+          <IoLogoTwitter client:only="preact"  />
         </a>
       </li>
     )
@@ -108,7 +109,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoMastodon />
+          <IoLogoMastodon client:only="preact" />
         </a>
       </li>
     )
@@ -122,7 +123,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoInstagram />
+          <IoLogoInstagram client:only="preact" />
         </a>
       </li>
     )
@@ -136,7 +137,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoYoutube />
+          <IoLogoYoutube client:only="preact" />
         </a>
       </li>
     )
@@ -150,7 +151,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoLinkedin />
+          <IoLogoLinkedin client:only="preact" />
         </a>
       </li>
     )
@@ -164,7 +165,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoGithub />
+          <IoLogoGithub client:only="preact" />
         </a>
       </li>
     )
@@ -178,7 +179,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoGitlab />
+          <IoLogoGitlab client:visible="preact" />
         </a>
       </li>
     )
@@ -192,7 +193,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoDiscord />
+          <IoLogoDiscord client:visible="preact" />
         </a>
       </li>
     )
@@ -206,7 +207,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoSlack />
+          <IoLogoSlack client:visible="preact" />
         </a>
       </li>
     )
@@ -220,7 +221,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoMedium />
+          <IoLogoMedium client:visible="preact" />
         </a>
       </li>
     )
@@ -234,7 +235,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoCodepen />
+          <IoLogoCodepen client:visible="preact" />
         </a>
       </li>
     )
@@ -248,7 +249,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoBitbucket />
+          <IoLogoBitbucket client:visible="preact" />
         </a>
       </li>
     )
@@ -262,7 +263,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoDribbble />
+          <IoLogoDribbble client:visible="preact" />
         </a>
       </li>
     )
@@ -276,7 +277,7 @@ const {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-          <IoLogoBehance />
+          <IoLogoBehance client:visible="preact" />
         </a>
       </li>
     )
