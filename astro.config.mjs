@@ -12,7 +12,7 @@ import lazyLoadPlugin from "rehype-plugin-image-native-lazy-loading";
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  adapter: cloudflare(),
+  adapter: cloudflare({ mode:'directory' }),
   site: config.site.base_url,
   base: config.site.base_path,
   trailingSlash: config.site.trailing_slash ? "always" : "never",
