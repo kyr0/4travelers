@@ -13,6 +13,7 @@ const postsCollection = defineCollection({
     categories: z.array(z.string()).default(["others"]),
     tags: z.array(z.string()).default(["others"]),
     draft: z.boolean().optional(),
+    vgwort_tracker: z.string().optional()
   }),
 });
 
