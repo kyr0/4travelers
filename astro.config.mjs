@@ -5,6 +5,8 @@ import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import config from "./src/config/config.json";
 import cloudflare from '@astrojs/cloudflare';
+import { remarkReadingTime } from "./src/lib/remarkReadingTime";
+import lazyLoadPlugin from 'rehype-plugin-image-native-lazy-loading'
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,7 +26,8 @@ export default defineConfig({
     mdx(),
   ],
   markdown: {
-    remarkPlugins: [],
+    remarkPlugins: [remarkReadingTime],
+    rehypePlugins: [lazyLoadPlugin],
     shikiConfig: {
       theme: "one-dark-pro",
       wrap: true,

@@ -4,7 +4,6 @@ import { getSinglePage } from "@lib/contentParser";
 
 export const get = async (context) => {
   const posts = await getSinglePage("posts");
-  console.log('posts', posts)
   return rss({
     title: config.site.title,
     description: config.site.description,
