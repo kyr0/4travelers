@@ -3,13 +3,12 @@
 import Base from "@layouts/Base.astro";
 import { markdownify } from "@lib/utils/textConverter";
 import { getEntryBySlug } from "astro:content";
-import Heading from "../layouts/partials/Heading.astro"
-import { Content } from '../content/about/index.mdx';
-import Cloudinary from "@layouts/components/Cloudinary.astro";
+import Cloudinary from "../layouts/components/Cloudinary.astro"
 
 export const prerender = true
 
 const entry = await getEntryBySlug("about", "index");
+const { Content } = await entry.render();
 const { title, description, meta_title, image, what_i_do } = entry.data;
 ---
 
