@@ -5,7 +5,7 @@ import react from "@astrojs/react";
 import { defineConfig } from "astro/config";
 import config from "./src/config/config.json";
 import cloudflare from "@astrojs/cloudflare";
-import webmanifest from 'astro-webmanifest'
+import webmanifest from "astro-webmanifest";
 import { remarkReadingTime } from "./src/lib/remarkReadingTime";
 import lazyLoadPlugin from "rehype-plugin-image-native-lazy-loading";
 
@@ -26,10 +26,10 @@ export default defineConfig({
     }),
     mdx(),
     webmanifest({
-      name: 'astro-launchpad',
-      icon: './public/favicon.svg',
+      name: config.site.title,
+      icon: "./public/images/logo-quad.svg",
       start_url: config.site.base_url,
-      display: 'standalone',
+      display: "standalone",
     }),
   ],
   markdown: {
