@@ -44,7 +44,7 @@ export const ScrollUpButton = () => {
           }}
         >
           <BiArrowToTop
-            size={"lg"}
+            size={"100%"}
             color={theme.colors.default.theme_color.primary}
           />
         </div>
