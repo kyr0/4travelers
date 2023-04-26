@@ -1,12 +1,11 @@
 ---
-
 import Share from "@components/Share.astro";
 import SimilarPosts from "@components/SimilarPosts.astro";
 import { getSinglePage } from "@lib/contentParser";
 import dateFormat from "@lib/utils/dateFormat";
 import similerItems from "@lib/utils/similarItems";
-import { humanize,markdownify,slugify } from "@lib/utils/textConverter";
-import { BiCalendarEdit,BiCategoryAlt, BiTime } from "react-icons/bi/index.js";
+import { humanize, markdownify, slugify } from "@lib/utils/textConverter";
+import { BiCalendarEdit, BiCategoryAlt, BiTime } from "react-icons/bi";
 import Cloudinary from "./components/Cloudinary.astro";
 
 const allAuthors = await getSinglePage("authors");
@@ -21,7 +20,7 @@ const { title, description, authors, categories, image, date, tags } =
 <section class="section">
   <div class="container">
     <article class="row justify-center">
-      <div class="md:col-10 text-center">
+      <div class="text-center md:col-10">
         <h1 set:html={markdownify(title)} class="h2" />
         <ul class="mt-4 flex flex-wrap items-center justify-center text-text">
           <li class="mx-3">
@@ -35,7 +34,7 @@ const { title, description, authors, categories, image, date, tags } =
                 .map((author, i) => (
                   <a
                     href={`/authors/${slugify(author.slug)}`}
-                    class="flex items-center hover:text-primary font-medium"
+                    class="hover:text-primary flex items-center font-medium"
                   >
                     {author.data.image && (
                       <img
@@ -51,39 +50,40 @@ const { title, description, authors, categories, image, date, tags } =
                 ))
             }
           </li>
-          <li class="mx-3 flex items-center flex-wrap font-medium">
+          <li class="mx-3 flex flex-wrap items-center font-medium">
             <BiCalendarEdit className="mr-1 h-5 w-5 text-gray-600" />
             <>{dateFormat(date)}</>
           </li>
 
-          <li class="mx-3 flex items-center flex-wrap font-medium">
+          <li class="mx-3 flex flex-wrap items-center font-medium">
             <BiTime className="mr-1 h-5 w-5 text-gray-600" />
-            {Math.round(remarkPluginFrontmatter?.estReadingTime) || '< 1'} min read
+            {Math.round(remarkPluginFrontmatter?.estReadingTime) || "< 1"} min read
           </li>
 
-          <li class="mx-3 flex items-center flex-wrap">
+          <li class="mx-3 flex flex-wrap items-center">
             <BiCategoryAlt className="mr-1 h-[18px] w-[18px] text-gray-600" />
             <>
-            <ul>
-              {
-                categories.map((category: string, i: number) => (
-                  <li class="inline-block">
-                    <a
-                      href={`/categories/${slugify(category)}`}
-                      class="mr-2 hover:text-primary font-medium"
-                    >
-                      {humanize(category)}{i !== post.data.categories.length - 1 && ","}
-                    </a>
-                  </li>
-                ))
-              }
-            </ul>
+              <ul>
+                {
+                  categories.map((category: string, i: number) => (
+                    <li class="inline-block">
+                      <a
+                        href={`/categories/${slugify(category)}`}
+                        class="hover:text-primary mr-2 font-medium"
+                      >
+                        {humanize(category)}
+                        {i !== post.data.categories.length - 1 && ","}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
             </>
           </li>
         </ul>
       </div>
 
-      <div class="col-12 mt-8 mb-2">
+      <div class="col-12 mb-2 mt-8">
         <!-- TODO: image gallery -->
         <Cloudinary src={image} alt={title} class="rounded-lg" />
       </div>
@@ -93,13 +93,13 @@ const { title, description, authors, categories, image, date, tags } =
           <Content />
         </div>
         <div class="flex flex-wrap items-center justify-between">
-          <ul class="mr-4 mb-4 space-x-3">
+          <ul class="mb-4 mr-4 space-x-3">
             {
               tags.map((tag: string) => (
                 <li class="inline-block">
                   <a
                     href={`/tags/${slugify(tag)}`}
-                    class="block rounded-lg bg-theme-light px-4 py-2 font-semibold text-dark text-sm hover:text-primary transition duration-300"
+                    class="bg-theme-light text-dark hover:text-primary block rounded-lg px-4 py-2 text-sm font-semibold transition duration-300"
                   >
                     #{humanize(tag)}
                   </a>
@@ -124,7 +124,7 @@ const { title, description, authors, categories, image, date, tags } =
   similarPosts.length > 0 && (
     <section class="section pt-0">
       <div class="container">
-        <h2 class="mb-8 text-center h3">Similar Posts</h2>
+        <h2 class="h3 mb-8 text-center">Similar Posts</h2>
         <SimilarPosts posts={similarPosts.slice(0, 3)} />
       </div>
     </section>
