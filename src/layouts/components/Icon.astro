@@ -1,0 +1,24 @@
+---
+const icons = await Astro.glob('./icons/*.astro')
+
+type PropValue = number | string
+
+export interface Props {
+  name: string
+  class?: string
+  height?: PropValue
+  width?: PropValue
+  color?: string
+}
+
+const { height, width, color, name } = {
+  width: 20,
+  height: 20,
+  ...Astro.props
+} as Props
+---
+{
+  icons.filter(icon => icon.file.endsWith(`${name}.astro`)).map((icon) =>
+    <icon.default height={height} width={width} color={color} class={Astro.props.class} />
+  )
+}

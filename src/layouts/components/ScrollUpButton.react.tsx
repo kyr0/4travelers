@@ -1,6 +1,5 @@
 import theme from "@config/theme.json";
 import { useLayoutEffect, useState } from "react";
-import { BiArrowToTop } from "react-icons/bi/index.js";
 
 export const ScrollUpButton = () => {
   const [visible, setVisible] = useState(false);
@@ -8,8 +7,6 @@ export const ScrollUpButton = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-      /* you can also use 'auto' behaviour
-                         in place of 'smooth' */
     });
   };
 
@@ -43,10 +40,8 @@ export const ScrollUpButton = () => {
             border: `1px solid ${theme.colors.default.theme_color.primary}`,
           }}
         >
-          <BiArrowToTop
-            size={"100%"}
-            color={theme.colors.default.theme_color.primary}
-          />
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24"><path fill={theme.colors.default.theme_color.primary} d="M11 21V10.8l-2.6 2.6L7 12l5-5l5 5l-1.4 1.4l-2.6-2.6V21h-2ZM4 5V3h16v2H4Z"/></svg>
+
         </div>
       )}
     </>

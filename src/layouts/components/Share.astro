@@ -1,11 +1,6 @@
 ---
 import config from "@config/config.json";
-import {
-  IoLogoFacebook,
-  IoLogoLinkedin,
-  IoLogoPinterest,
-  IoLogoTwitter,
-} from "react-icons/io5/index.js";
+import Icon from "./Icon.astro";
 
 const { base_url } = config.site;
 const { title, description, slug, className } = Astro.props;
@@ -19,7 +14,7 @@ const { title, description, slug, className } = Astro.props;
       target="_blank"
       rel="noreferrer noopener"
     >
-      <IoLogoFacebook   />
+      <Icon name="Facebook" />
     </a>
   </li>
   <li class="inline-block">
@@ -29,7 +24,7 @@ const { title, description, slug, className } = Astro.props;
       target="_blank"
       rel="noreferrer noopener"
     >
-      <IoLogoTwitter   />
+      <Icon name="Twitter" />
     </a>
   </li>
   <li class="inline-block">
@@ -39,17 +34,7 @@ const { title, description, slug, className } = Astro.props;
       target="_blank"
       rel="noreferrer noopener"
     >
-      <IoLogoLinkedin   />
-    </a>
-  </li>
-  <li class="inline-block">
-    <a
-      aria-label="pinterest share button"
-      href={`https://pinterest.com/pin/create/button/?url=${base_url}/${slug}&media=&description=${description}`}
-      target="_blank"
-      rel="noreferrer noopener"
-    >
-      <IoLogoPinterest   />
+      <Icon name="Linkedin" />
     </a>
   </li>
 </ul>

@@ -1,11 +1,21 @@
 ---
-
 import Base from "@layouts/Base.astro";
 import { markdownify } from "@lib/utils/textConverter";
 import { getEntryBySlug } from "astro:content";
 import Cloudinary from "../layouts/components/Cloudinary.astro"
+import Icon from "../layouts/components/Icon.astro"
+import config from "@config/config.json";
+import Authors from "@layouts/Authors.astro";
+import Pagination from "@layouts/components/Pagination.astro";
+import { getCollectionEntries } from "@lib/contentParser";
+import { sortByDate } from "@lib/utils/sortFunctions";
 
 export const prerender = true
+
+const authors = await getCollectionEntries("authors");
+const sortedPosts = sortByDate(authors);
+const totalPages = Math.ceil(authors.length / config.settings.pagination);
+const currentPosts = sortedPosts.slice(0, config.settings.pagination);
 
 const entry = await getEntryBySlug("about", "index");
 const { Content } = await entry.render();
@@ -38,11 +48,19 @@ const { title, description, meta_title, image, what_i_do } = entry.data;
           <h1 set:html={markdownify(title)} class="h3 mb-8 font-secondary" />
 
           <div class="content">
-            <Content components={{ Cloudinary }} />
+            <Content components={{ Cloudinary, Icon }} />
           </div>
           <a href="/contact" class="btn btn-primary text-white py-2">Get In Touch</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container text-center">
+      <h1 set:text={markdownify("Authors")} class="page-heading h2" />
+      <Authors authors={currentPosts} />
+      <Pagination section={"authors"} currentPage={1} totalPages={totalPages} />
     </div>
   </section>
 

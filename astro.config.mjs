@@ -8,6 +8,8 @@ import cloudflare from "@astrojs/cloudflare";
 import webmanifest from "astro-webmanifest";
 import { remarkReadingTime } from "./src/lib/remarkReadingTime";
 import lazyLoadPlugin from "rehype-plugin-image-native-lazy-loading";
+import purgecss from 'astro-purgecss';
+import serviceWorker from "astrojs-service-worker";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +19,7 @@ export default defineConfig({
   base: config.site.base_path,
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   integrations: [
+    serviceWorker(),
     react(),
     sitemap(),
     tailwind({
@@ -31,6 +34,7 @@ export default defineConfig({
       start_url: config.site.base_url,
       display: "standalone",
     }),
+    purgecss()
   ],
   markdown: {
     remarkPlugins: [remarkReadingTime],

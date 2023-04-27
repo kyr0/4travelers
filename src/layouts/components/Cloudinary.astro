@@ -1,11 +1,16 @@
 ---
 import { CloudinaryProps, cloudinary } from './Cloudinary'
+
+export interface Props extends CloudinaryProps {
+  class?: string
+}
+
 const { uri, alt } = cloudinary({
   quality: 75,
   format: 'webp',
   width: 936,
   ...Astro.props
-} as CloudinaryProps)
+} as Props)
 ---
 
 <img src={uri} alt={alt} class={Astro.props.class || ''}/>

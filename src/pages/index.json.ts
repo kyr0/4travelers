@@ -1,13 +1,13 @@
 import type { APIRoute } from 'astro';
 
-import { getSinglePage } from "@lib/contentParser";
+import { getCollectionEntries } from "@lib/contentParser";
 
 export const prerender = true
 
 export const get: APIRoute = async () => {
 
   // Retrieve all articles
-  const posts = await getSinglePage("posts");
+  const posts = await getCollectionEntries("posts");
 
   // List of items to search in
   const searchList = posts.map((item) => ({

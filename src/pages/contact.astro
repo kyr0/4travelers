@@ -1,14 +1,13 @@
 ---
 import config from "@config/config.json";
 import Base from "@layouts/Base.astro";
+import Icon from "@layouts/components/Icon.astro";
 import { markdownify } from "@lib/utils/textConverter";
 import { getEntryBySlug } from "astro:content";
-import { FaAddressCard, FaEnvelope, FaPhoneAlt } from "react-icons/fa/index.js";
 
 export const prerender = true;
 
 const entry = await getEntryBySlug("pages", "contact");
-const { contact_form_action } = config.params;
 const { address, email, phone } = config.contactinfo;
 const { title, description, meta_title, image } = entry.data;
 ---
@@ -28,14 +27,14 @@ const { title, description, meta_title, image } = entry.data;
           <ul class="flex flex-col space-y-8">
             <li>
               <div class="flex items-center text-xl text-theme-dark">
-                <FaAddressCard className="mr-3 text-primary"  />
+                <Icon name="Address" class="mr-3 text-primary" />
                 <p class="font-semibold">Address</p>
               </div>
               <p set:html={markdownify(address)} class="mt-2 pl-8 leading-5" />
             </li>
             <li>
               <div class="flex items-center text-xl text-theme-dark">
-                <FaEnvelope className="mr-3 text-primary"  />
+                <Icon name="Email" class="mr-3 text-primary" />
                 <p class="font-semibold">Email</p>
               </div>
               <p
@@ -45,7 +44,7 @@ const { title, description, meta_title, image } = entry.data;
             </li>
             <li>
               <div class="flex items-center text-xl text-theme-dark">
-                <FaPhoneAlt className="mr-3 text-primary"  />
+                <Icon name="Call" class="mr-3 text-primary" />
                 <p class="font-semibold">Phone</p>
               </div>
               <p set:html={markdownify(phone)} class="mt-2 pl-8 leading-5" />

@@ -1,10 +1,10 @@
 ---
-import { getSinglePage } from "./contentParser";
+import { getCollectionEntries } from "./contentParser";
 import { slugify } from "./utils/textConverter";
 
 // get all taxonomies from frontmatter
 export const getTaxonomy = async (collection: string, name: string) => {
-  const singlePages = await getSinglePage(collection);
+  const singlePages = await getCollectionEntries(collection);
   const taxonomyPages = singlePages.map((page) => page.data[name]);
   let taxonomies = [];
   for (let i = 0; i < taxonomyPages.length; i++) {

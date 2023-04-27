@@ -1,9 +1,9 @@
 ---
 import { markdownify } from "@lib/utils/textConverter";
 
-const { data } = Astro.props;
-const { title } = data.data;
-const { Content } = await data.render();
+const { page } = Astro.props;
+const { title } = page.data;
+const { Content } = await page.render();
 ---
 
 <section class="section">

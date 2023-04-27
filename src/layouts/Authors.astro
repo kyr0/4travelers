@@ -1,6 +1,7 @@
 ---
 import { markdownify } from "@lib/utils/textConverter";
-import { BsArrowRightCircle } from "react-icons/bs/index.js";
+import Cloudinary from "./components/Cloudinary.astro";
+import Icon from "./components/Icon.astro";
 const { authors } = Astro.props;
 ---
 
@@ -10,7 +11,7 @@ const { authors } = Astro.props;
       <div class="col-12 sm:col-6 md:col-4 mb-8">
         {author.data.image && (
           <div class="mb-4">
-            <img
+            <Cloudinary
               src={author.data.image}
               alt={author.data.title}
               height={150}
@@ -33,7 +34,7 @@ const { authors } = Astro.props;
           class="text-primary inline-flex items-center transition duration-200 hover:opacity-70"
         >
           Read More{" "}
-          <BsArrowRightCircle className="ml-2 inline"  />
+          <Icon name="ArrowCircleRight" class="ml-2 inline"  />
         </a>
       </div>
     ))

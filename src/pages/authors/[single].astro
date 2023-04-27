@@ -1,18 +1,18 @@
 ---
 import AuthorSingle from "@layouts/AuthorSingle.astro";
 import Base from "@layouts/Base.astro";
-import { getSinglePage } from "@lib/contentParser";
+import { getCollectionEntries } from "@lib/contentParser";
 import dateFormat from "@lib/utils/dateFormat";
 
 import { sortByDate } from "@lib/utils/sortFunctions";
 import { humanize, slugify } from "@lib/utils/textConverter";
-import { BiCalendarEdit, BiCategoryAlt } from "react-icons/bi/index.js";
 import Cloudinary from "@layouts/components/Cloudinary.astro";
+import Icon from "@layouts/components/Icon.astro";
 
 export const prerender = true;
 
 export async function getStaticPaths() {
-  const authors = await getSinglePage("authors");
+  const authors = await getCollectionEntries("authors");
 
   const paths = authors.map((author) => ({
     params: {
@@ -28,7 +28,7 @@ const { author } = Astro.props;
 const { title, meta_title, description, image } = author.data;
 
 // Author Posts
-const posts = await getSinglePage("posts");
+const posts = await getCollectionEntries("posts");
 const sortPostsByDate = sortByDate(posts);
 const currentPosts = sortPostsByDate.filter((post) => {
   return post.data.authors
@@ -73,11 +73,11 @@ const currentPosts = sortPostsByDate.filter((post) => {
                 )}
                 <ul class="text-text mt-4 flex flex-wrap items-center text-sm">
                   <li class="mb-2 mr-4 flex flex-wrap items-center font-medium">
-                    <BiCalendarEdit className="mr-1 h-[16px] w-[16px] text-gray-600" />
+                    <Icon name="Calendar" class="mr-1 h-[16px] w-[16px] text-gray-600" />
                     <>{dateFormat(post.data.date)}</>
                   </li>
                   <li class="mb-2 mr-4 flex flex-wrap items-center">
-                    <BiCategoryAlt className="mr-1 h-[16px] w-[16px] text-gray-600" />
+                    <Icon name="Category" class="mr-1 h-[16px] w-[16px] text-gray-600" />
                     <>
                       <ul>
                         {post.data.categories.map(

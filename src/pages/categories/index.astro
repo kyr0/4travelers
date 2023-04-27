@@ -1,13 +1,12 @@
 ---
 import Base from "@layouts/Base.astro";
+import Icon from "@layouts/components/Icon.astro";
 import { getTaxonomy } from "@lib/taxonomyParser.astro";
 import { humanize } from "@lib/utils/textConverter";
 
 export const prerender = true;
 
 const categories = await getTaxonomy("posts", "categories");
-
-import { BiCategoryAlt } from "react-icons/bi/index.js";
 ---
 
 <Base title={"Categories"}>
@@ -22,7 +21,7 @@ import { BiCategoryAlt } from "react-icons/bi/index.js";
                 href={`/categories/${category}`}
                 class="bg-theme-light text-dark hover:bg-primary group flex items-center rounded-lg px-4 py-2 transition hover:text-white"
               >
-                <BiCategoryAlt className="text-primary mr-1 h-6 w-6 scale-75 transition group-hover:text-white" />
+                <Icon name="Category" class="text-primary mr-1 h-6 w-6 scale-75 transition group-hover:text-white" />
                 <>{humanize(category || "")}</>
               </a>
             </li>

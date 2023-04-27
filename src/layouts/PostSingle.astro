@@ -1,15 +1,15 @@
 ---
 import Share from "@components/Share.astro";
 import SimilarPosts from "@components/SimilarPosts.astro";
-import { getSinglePage } from "@lib/contentParser";
+import { getCollectionEntries } from "@lib/contentParser";
 import dateFormat from "@lib/utils/dateFormat";
 import similerItems from "@lib/utils/similarItems";
 import { humanize, markdownify, slugify } from "@lib/utils/textConverter";
-import { BiCalendarEdit, BiCategoryAlt, BiTime } from "react-icons/bi/index.js";
 import Cloudinary from "./components/Cloudinary.astro";
+import Icon from "./components/Icon.astro";
 
-const allAuthors = await getSinglePage("authors");
-const posts = await getSinglePage("posts");
+const allAuthors = await getCollectionEntries("authors");
+const posts = await getCollectionEntries("posts");
 const { post } = Astro.props;
 const similarPosts = similerItems(post, posts, post.slug);
 const { Content, remarkPluginFrontmatter } = await post.render();
@@ -37,7 +37,7 @@ const { title, description, authors, categories, image, date, tags } =
                     class="hover:text-primary flex items-center font-medium"
                   >
                     {author.data.image && (
-                      <img
+                      <Cloudinary
                         src={author.data.image}
                         alt={author.data.title}
                         height={50}
@@ -51,17 +51,17 @@ const { title, description, authors, categories, image, date, tags } =
             }
           </li>
           <li class="mx-3 flex flex-wrap items-center font-medium">
-            <BiCalendarEdit className="mr-1 h-5 w-5 text-gray-600" />
+            <Icon name="Calendar" class="mr-1 h-5 w-5 text-gray-600" />
             <>{dateFormat(date)}</>
           </li>
 
           <li class="mx-3 flex flex-wrap items-center font-medium">
-            <BiTime className="mr-1 h-5 w-5 text-gray-600" />
+            <Icon name="Time" class="mr-1 h-5 w-5 text-gray-600" />
             {Math.round(remarkPluginFrontmatter?.estReadingTime) || "< 1"} min read
           </li>
 
           <li class="mx-3 flex flex-wrap items-center">
-            <BiCategoryAlt className="mr-1 h-[18px] w-[18px] text-gray-600" />
+            <Icon name="Category" class="mr-1 h-[18px] w-[18px] text-gray-600" />
             <>
               <ul>
                 {

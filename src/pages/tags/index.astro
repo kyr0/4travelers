@@ -1,9 +1,8 @@
 ---
 import Base from "@layouts/Base.astro";
+import Icon from "@layouts/components/Icon.astro";
 import { getTaxonomy } from "@lib/taxonomyParser.astro";
 import { humanize } from "@lib/utils/textConverter";
-
-import { FaHashtag } from "react-icons/fa/index.js";
 
 export const prerender = true;
 
@@ -22,7 +21,7 @@ const tags = await getTaxonomy("posts", "tags");
                 href={`/tags/${tag}`}
                 class="bg-theme-light text-dark hover:bg-primary group flex items-center rounded-lg px-4 py-2 transition hover:text-white"
               >
-                <FaHashtag className="text-primary mr-1 transition group-hover:text-white" />
+                <Icon name="Hashtag" class="text-primary mr-1 transition group-hover:text-white" />
                 <>{humanize(tag || "")}</>
               </a>
             </li>

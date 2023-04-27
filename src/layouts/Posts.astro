@@ -1,12 +1,11 @@
 ---
 import config from "@config/config.json";
-import { getSinglePage } from "@lib/contentParser";
+import { getCollectionEntries } from "@lib/contentParser";
 import dateFormat from "@lib/utils/dateFormat";
 import { humanize, slugify } from "@lib/utils/textConverter";
-import { BsArrowRightCircle } from "react-icons/bs/index.js";
-import { BiCalendarEdit, BiCategoryAlt, BiTime } from "react-icons/bi/index.js";
 import Cloudinary from "./components/Cloudinary.astro";
-const authors = await getSinglePage("authors");
+import Icon from "./components/Icon.astro";
+const authors = await getCollectionEntries("authors");
 const { summary_length } = config.settings;
 const { className, posts, fluid } = Astro.props;
 ---
@@ -47,7 +46,7 @@ const { className, posts, fluid } = Astro.props;
                   class="hover:text-primary flex items-center font-medium"
                 >
                   {author.data.image && (
-                    <img
+                    <Cloudinary
                       src={author.data.image}
                       alt={author.data.title}
                       height={50}
@@ -60,12 +59,12 @@ const { className, posts, fluid } = Astro.props;
               ))}
           </li>
           <li class="mr-5 flex flex-wrap items-center font-medium">
-            <BiCalendarEdit className="mr-1 h-5 w-5 text-gray-600" />
+            <Icon name="Calendar" class="mr-1 h-5 w-5 text-gray-600" />
             <>{dateFormat(post.data.date)}</>
           </li>
 
           <li class="mr-5 flex flex-wrap items-center">
-            <BiCategoryAlt className="mr-1 h-[18px] w-[18px] text-gray-600" />
+            <Icon name="Category" class="mr-1 h-[18px] w-[18px] text-gray-600" />
             <>
               <ul>
                 {post.data.categories.map((category: string, i: number) => (
@@ -105,7 +104,7 @@ const { className, posts, fluid } = Astro.props;
           class="text-primary inline-flex items-center transition duration-200 hover:opacity-70"
         >
           Read More{" "}
-          <BsArrowRightCircle className="ml-2 inline"  />
+          <Icon name="ArrowCircleRight" class="ml-2 inline"  />
         </a>
       </div>
     ))

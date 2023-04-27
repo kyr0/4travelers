@@ -1,9 +1,9 @@
 import rss from '@astrojs/rss'
 import config from "../config/config.json"
-import { getSinglePage } from "@lib/contentParser";
+import { getCollectionEntries } from "@lib/contentParser";
 
 export const get = async (context) => {
-  const posts = await getSinglePage("posts");
+  const posts = await getCollectionEntries("posts");
   return rss({
     title: config.site.title,
     description: config.site.description,

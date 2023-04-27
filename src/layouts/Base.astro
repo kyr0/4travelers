@@ -1,5 +1,6 @@
 ---
 import TwSizeIndicator from "@components/TwSizeIndicator.astro";
+import { GoogleFontsOptimizer } from "astro-google-fonts-optimizer";
 import config from "@config/config.json";
 import theme from "@config/theme.json";
 import { plainify } from "@lib/utils/textConverter";
@@ -11,6 +12,9 @@ import "@styles/style.scss";
 // font families
 const pf = theme.fonts.font_family.primary;
 const sf = theme.fonts.font_family.secondary;
+const fontUrl = new URL(`https://fonts.googleapis.com/css2?family=${pf}${
+        sf ? "&family=" + sf : ""
+      }&display=swap`)
 
 // types for frontmatters
 export interface Props {
@@ -45,18 +49,14 @@ const { title, meta_title, description, image, noindex, canonical } =
       media="(prefers-color-scheme: dark)"
       content="#000"
     />
+
     <meta name="generator" content={Astro.generator} />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <!-- google font css -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href={`https://fonts.googleapis.com/css2?family=${pf}${
-        sf ? "&family=" + sf : ""
-      }&display=swap`}
-      rel="stylesheet"
-    />
+
+    <GoogleFontsOptimizer url={fontUrl as any}>
+    </GoogleFontsOptimizer>
 
     <!-- responsive meta -->
     <meta

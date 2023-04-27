@@ -1,6 +1,6 @@
 ---
 title: Michi
-image: /images/authors/mark-dinn.jpg
+image: v1682621577/mark-dinn_eq2gqo.jpg
 description: this is meta description
 social:
   facebook: https://www.facebook.com/

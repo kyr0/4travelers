@@ -2,16 +2,17 @@
 import Base from "@layouts/Base.astro";
 import Default from "@layouts/Default.astro";
 import PostSingle from "@layouts/PostSingle.astro";
-import { getSinglePage } from "@lib/contentParser";
+import { getCollectionEntries } from "@lib/contentParser";
 
 export const prerender = true
 
-const getPosts = await getSinglePage("posts");
+const getPosts = await getCollectionEntries("posts");
 const postsSlug = getPosts.map((item) => item.slug);
 
 export async function getStaticPaths() {
-  const posts = await getSinglePage("posts");
-  const pages = await getSinglePage("pages");
+  const posts = await getCollectionEntries("posts");
+  const pages = await getCollectionEntries("pages");
+
   const allPages = [...pages, ...posts];
 
   const paths = allPages.map((page) => ({
@@ -37,7 +38,7 @@ const { title, meta_title, description, image } = page.data;
     postsSlug.includes(page.slug) ? (
       <PostSingle post={page} />
     ) : (
-      <Default data={page} />
+      <Default page={page} />
     )
   }
 </Base>

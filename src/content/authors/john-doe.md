@@ -1,6 +1,6 @@
 ---
 title: John Doe
-image: /images/authors/john-doe.jpg
+image: v1682621577/john-doe_nkcj55.jpg
 description: this is meta description
 social:
   facebook: https://www.facebook.com/

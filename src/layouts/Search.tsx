@@ -3,7 +3,6 @@ import dateFormat from "@lib/utils/dateFormat";
 import { humanize, slugify } from "@lib/utils/textConverter";
 import Fuse from "fuse.js";
 import { useEffect, useRef, useState } from "react";
-import { BiCalendarEdit, BiCategoryAlt } from "react-icons/bi/index.js";
 import { cloudinary } from "./components/Cloudinary";
 const { summary_length } = config.settings;
 
@@ -110,11 +109,11 @@ export default function SearchBar({ searchList }: Props) {
 
             <ul className="mb-4 mt-6 flex flex-wrap items-center text-text">
               <li className="mr-5 flex flex-wrap items-center font-medium">
-                <BiCalendarEdit className="mr-1 h-5 w-5 text-gray-600" />
+                <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 h-5 w-5 text-gray-600" viewBox="0 0 24 24"><path fill={'currentColor'} d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM9 14H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2zm-8 4H7v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"/></svg>
                 <>{dateFormat(item.data.date)}</>
               </li>
               <li className="mr-5 flex flex-wrap items-center">
-                <BiCategoryAlt className="mr-1 h-[18px] w-[18px] text-gray-600" />
+                <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 h-[18px] w-[18px] text-gray-600" viewBox="0 0 24 24"><path fill={'currentColor'} d="M2 2h9v9H2V2m15.5 0C20 2 22 4 22 6.5S20 11 17.5 11S13 9 13 6.5S15 2 17.5 2m-11 12l4.5 8H2l4.5-8M19 17h3v2h-3v3h-2v-3h-3v-2h3v-3h2v3Z"/></svg>
                 <>
                   <ul>
                     {item.data.categories.map((category: string, i: number) => (

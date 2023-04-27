@@ -3,14 +3,14 @@ import config from "@config/config.json";
 import Authors from "@layouts/Authors.astro";
 import Base from "@layouts/Base.astro";
 import Pagination from "@layouts/components/Pagination.astro";
-import { getSinglePage } from "@lib/contentParser";
+import { getCollectionEntries } from "@lib/contentParser";
 import { sortByDate } from "@lib/utils/sortFunctions";
 import { markdownify } from "@lib/utils/textConverter";
 
 export const prerender = true
 
 export async function getStaticPaths() {
-  const authors = await getSinglePage("authors");
+  const authors = await getCollectionEntries("authors");
   const totalPages = Math.ceil(authors.length / config.settings.pagination);
   const paths = [];
 
@@ -25,7 +25,7 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const authors = await getSinglePage("authors");
+const authors = await getCollectionEntries("authors");
 const sortedPosts = sortByDate(authors);
 const totalPages = Math.ceil(authors.length / config.settings.pagination);
 const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
