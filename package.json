@@ -11,11 +11,13 @@
     "@astrojs/cloudflare": "^6.2.3",
     "@astrojs/image": "^0.14.1",
     "@astrojs/mdx": "^0.16.0",
+    "@astrojs/preact": "^2.1.0",
     "@astrojs/rss": "^2.1.0",
     "@cloudflare/pages-plugin-mailchannels": "^0.1.2",
     "astro": "^2.0.11",
     "astro-google-fonts-optimizer": "^0.2.2",
     "astro-purgecss": "^2.0.1",
+    "astro-robots-txt": "^0.5.0",
     "astro-webmanifest": "^0.6.0",
     "astrojs-service-worker": "^1.0.0",
     "autoprefixer": "^10.4.14",
@@ -25,7 +27,7 @@
     "github-slugger": "^2.0.0",
     "marked": "^4.2.12",
     "mdast-util-to-string": "^3.2.0",
-    "react-icons": "^4.7.1",
+    "preact": "^10.13.2",
     "reading-time": "^1.5.0",
     "rehype-plugin-image-native-lazy-loading": "^1.2.0",
     "wrangler": "^2.17.0"
@@ -47,5 +49,9 @@
     "sass": "^1.58.1",
     "tailwind-bootstrap-grid": "^5.0.1",
     "tailwindcss": "^3.2.6"
+  },
+  "overrides": {
+    "react": "npm:@preact/compat@latest",
+    "react-dom": "npm:@preact/compat@latest"
   }
 }

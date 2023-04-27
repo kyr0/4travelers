@@ -1,10 +1,11 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
-import react from "@astrojs/react";
 import { defineConfig } from "astro/config";
+import robotsTxt from 'astro-robots-txt';
 import config from "./src/config/config.json";
 import cloudflare from "@astrojs/cloudflare";
+import preact from '@astrojs/preact';
 import webmanifest from "astro-webmanifest";
 import { remarkReadingTime } from "./src/lib/remarkReadingTime";
 import lazyLoadPlugin from "rehype-plugin-image-native-lazy-loading";
@@ -19,8 +20,9 @@ export default defineConfig({
   base: config.site.base_path,
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   integrations: [
+    robotsTxt(),
     serviceWorker(),
-    react(),
+    preact({ compat: true }),
     sitemap(),
     tailwind({
       config: {
