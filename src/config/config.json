@@ -24,11 +24,11 @@
   },
 
   "params": {
-    "contact_form_action": "#",
-    "copyright": "Copyright © 2023 a theme by [Themefisher](https://themefisher.com)"
+    "copyright": "Copyright © 2023 4Travellers.blog"
   },
 
   "contactinfo": {
+    "name": "4 Travellers",
     "address": "355 S Grand Ave <br/> Los Angeles, CA 90071",
     "email": "info@bookworm.org",
     "phone": "+800 567 1234"

@@ -1,18 +1,16 @@
 import mailChannelsPlugin from "@cloudflare/pages-plugin-mailchannels";
+import config from "../src/config/config.json";
+
 
 export const onRequest = mailChannelsPlugin({
   personalizations: [
     {
-      to: [{ name: "Aron Homberg", email: "info@aron-homberg.de" }],
+      to: [{ name: config.contactinfo.name, email: config.contactinfo.email }],
     },
   ],
   from: {
-    name: "Aron Homberg",
-    email: "info@aron-homberg.de",
+    name: config.contactinfo.name,
+    email: config.contactinfo.email,
   },
-  respondWith: () => {
-    return new Response(
-      `Thank you for submitting your enquiry. A member of the team will be in touch shortly.`
-    );
-  },
+  respondWith: () => Response.redirect(`${config.site.base_url}${config.site.base_path}/contact-thank-you`, 301)
 });
