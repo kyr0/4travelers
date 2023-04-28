@@ -139,6 +139,13 @@ const { title, meta_title, description, image, noindex, canonical } =
       }`}
     />
     <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      import { CookieManager } from "@lib/utils/CookieManager";
+      import { cookie } from "@config/config.json";
+
+     const cm = new CookieManager(cookie.name, cookie.cookies);
+     window.CM = cm; 
+    </script>
   </head>
   <body>
     <TwSizeIndicator />
