@@ -11,6 +11,10 @@
     "logo_height": "40",
     "logo_text": "4 Travellers"
   },
+  "cookie": {
+    "name": "4travelers",
+    "cookies": [{ "name": "youtube", "durationInMs": 5000 }]
+  },
 
   "settings": {
     "pagination": 5,
