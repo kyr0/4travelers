@@ -1,0 +1,130 @@
+---
+import theme from "@config/theme.json";
+import { BiLeftArrow, BiRightArrow } from "react-icons/bi/index.js";
+
+interface Props {
+  name: string;
+  images: Array<string>;
+  autoswipe?: false | true | { durationInMs: number };
+}
+
+const { images, name, autoswipe = false } = Astro.props;
+
+let swipeDurationInMs = 5000;
+
+if (
+  typeof autoswipe === "object" &&
+  typeof autoswipe?.durationInMs === "number"
+) {
+  swipeDurationInMs = autoswipe.durationInMs;
+}
+---
+
+<div class="gallery" data-name={name}>
+  <div class="slider">
+    <div class="slider-button back">
+      <BiLeftArrow
+        size={"60px"}
+        color={theme.colors.default.theme_color.primary}
+      />
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="image">
+      <div class="slider-mobile">
+        <div class="slider-button back">
+          <BiLeftArrow
+            size={"60px"}
+            color={theme.colors.default.theme_color.primary}
+          />
+        </div>
+      </div>
+      <div class="slider-mobile-gap"></div>
+      <div class="slider-mobile">
+        <div class="slider-button next">
+          <BiRightArrow
+            size={"60px"}
+            color={theme.colors.default.theme_color.primary}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slider">
+    <div class="slider-button next">
+      <BiRightArrow
+        size={"60px"}
+        color={theme.colors.default.theme_color.primary}
+      />
+    </div>
+  </div>
+  <script
+    define:vars={{
+      images,
+      name,
+      autoswipe,
+      swipeDurationInMs,
+    }}
+  >
+    const mainEl = document.querySelectorAll('.gallery[data-name=' + name + ']')[0]
+    const imgEl = mainEl.querySelectorAll(`.image`)[0];
+    const nextButtons = mainEl.querySelectorAll(`.slider-button.next`);
+    const backButtons = mainEl.querySelectorAll(`.slider-button.back`);
+
+    if (images.length < 2) {
+      nextButtons.forEach((b) => {
+        b.setAttribute("style", "opacity: 0;");
+      });
+      backButtons.forEach((n) => {
+        n.setAttribute("style", "opacity: 0;");
+      });
+    }
+    let index = 0;
+    let timeout;
+
+    imgEl.addEventListener("click", function () {
+      clearTimeout(timeout);
+    });
+
+    const update = function () {
+      setTimeoutFn();
+
+      const src = images[index];
+      imgEl.setAttribute("style", "background-image: url('" + src + "')");
+    };
+
+    const onNextClick = function () {
+      let nextIndex = index + 1;
+      if (nextIndex === images.length) {
+        nextIndex = 0;
+      }
+      index = nextIndex;
+      update();
+    };
+
+    const onBackClick = function () {
+      let nextIndex = index - 1;
+      if (nextIndex === -1) {
+        nextIndex = images.length - 1;
+      }
+      index = nextIndex;
+      update();
+    };
+
+    backButtons.forEach(function (b) {
+      b.addEventListener("click", onBackClick);
+    });
+    nextButtons.forEach(function (b) {
+      b.addEventListener("click", onNextClick);
+    });
+
+    const setTimeoutFn = function () {
+      if (autoswipe === true && images.length > 1) {
+        clearTimeout(timeout);
+        timeout = setTimeout(onNextClick, swipeDurationInMs);
+      }
+    };
+    setTimeoutFn();
+    update();
+  </script>
+</div>

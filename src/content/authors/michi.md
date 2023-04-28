@@ -1,6 +1,6 @@
 ---
-title: Michi
-image: v1682621577/mark-dinn_eq2gqo.jpg
+title: Michael Mannseicher
+image: /v1682621577/mark-dinn_eq2gqo.jpg
 description: this is meta description
 social:
   facebook: https://www.facebook.com/
@@ -8,4 +8,4 @@ social:
   instagram: https://www.instagram.com/
 ---
 
-lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostr navigation et dolore magna aliqua.
+Ich bin Software Entwickler aus der nähe von München und habe den Computer bei Seite gelegt und reise durch die Welt. 
