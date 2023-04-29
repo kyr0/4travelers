@@ -92,3 +92,19 @@
 footer p a {
   @apply transition-all duration-200 hover:text-white;
 }
+
+.post-author {
+  @apply flex w-full rounded-xl p-5 opacity-80 bg-theme-light;
+
+  .author-image {
+    @apply mr-5;
+  }
+
+  .author-name {
+    @apply text-lg font-semibold ml-5;
+  }
+
+  .author-bio {
+    @apply text-sm ml-5;
+  }
+}

@@ -25,16 +25,10 @@ const { authors } = Astro.props;
             href={`/authors/${author.slug}`}
             class="hover:text-primary block transition duration-200"
           >
-            {author.data.title}
+            {author.data.title}{''}<Icon name="ArrowCircleRight" class="ml-2 inline"  />
           </a>
         </h3>
         <p class="mb-3" set:text={markdownify(author.body.slice(0, 100))} />
-        <a
-          href={`/authors/${author.slug}`}
-          class="text-primary inline-flex items-center transition duration-200 hover:opacity-70"
-        >
-          <Icon name="ArrowCircleRight" class="ml-2 inline"  />
-        </a>
       </div>
     ))
   }

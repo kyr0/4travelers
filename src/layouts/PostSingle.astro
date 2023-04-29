@@ -15,6 +15,12 @@ const similarPosts = similerItems(post, posts, post.slug);
 const { Content, remarkPluginFrontmatter } = await post.render();
 const { title, description, authors, categories, image, date, tags } =
   post.data;
+const auhtors = allAuthors
+                .filter((author) =>
+                  authors
+                    .map((author: string) => slugify(author))
+                    .includes(slugify(author.data.title))
+                )
 ---
 
 <section class="section">
@@ -25,12 +31,7 @@ const { title, description, authors, categories, image, date, tags } =
         <ul class="mt-4 flex flex-wrap items-center justify-center text-text">
           <li class="mx-3">
             {
-              allAuthors
-                .filter((author) =>
-                  authors
-                    .map((author: string) => slugify(author))
-                    .includes(slugify(author.data.title))
-                )
+              auhtors
                 .map((author, i) => (
                   <a
                     href={`/authors/${slugify(author.slug)}`}
@@ -113,6 +114,15 @@ const { title, description, authors, categories, image, date, tags } =
             description={description}
             slug={post.slug}
           />
+        </div>
+        <div class="post-author">
+          <Cloudinary class="author-image" src={auhtors[0].data.image as string} alt={auhtors[0].data.title} width={100} height={100} class="rounded-full" />
+          <div>
+            <h3 class="author-name">{auhtors[0].data.title}</h3>
+            <p class="author-bio">
+              {auhtors[0].data.description}
+            </p>
+          </div>
         </div>
       </div>
     </article>

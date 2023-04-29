@@ -113,7 +113,7 @@ export default function SearchBar({ searchList }: Props) {
                 <>{dateFormat(item.data.date)}</>
               </li>
               <li className="mr-5 flex flex-wrap items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 h-[18px] w-[18px] text-gray-600" viewBox="0 0 24 24"><path fill={'currentColor'} d="M2 2h9v9H2V2m15.5 0C20 2 22 4 22 6.5S20 11 17.5 11S13 9 13 6.5S15 2 17.5 2m-11 12l4.5 8H2l4.5-8M19 17h3v2h-3v3h-2v-3h-3v-2h3v-3h2v3Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" className="mr-1 h-5 w-5  text-gray-600" viewBox="0 0 24 24"><path fill={'currentColor'} d="M2 2h9v9H2V2m15.5 0C20 2 22 4 22 6.5S20 11 17.5 11S13 9 13 6.5S15 2 17.5 2m-11 12l4.5 8H2l4.5-8M19 17h3v2h-3v3h-2v-3h-3v-2h3v-3h2v3Z"/></svg>
                 <>
                   <ul>
                     {item.data.categories.map((category: string, i: number) => (

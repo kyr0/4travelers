@@ -31,8 +31,8 @@ export const ScrollUpButton = () => {
           onClick={scrollToTop}
           style={{
             position: "fixed",
-            bottom: 5,
-            right: 10,
+            bottom: 15,
+            right: 15,
             width: 45,
             height: 45,
             cursor: "pointer",

@@ -36,7 +36,15 @@ export default defineConfig({
       start_url: config.site.base_url,
       display: "standalone",
     }),
-    purgecss()
+    purgecss({
+      blocklist: [],
+      safelist: [],
+      fontFace: true,
+      keyframes: true,
+      variables: true,
+      rejected: false,
+      rejectedCss: false
+    })
   ],
   markdown: {
     remarkPlugins: [remarkReadingTime],

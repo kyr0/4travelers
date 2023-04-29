@@ -64,7 +64,7 @@ const { className, posts, fluid } = Astro.props;
           </li>
 
           <li class="mr-5 flex flex-wrap items-center">
-            <Icon name="Category" class="mr-1 h-[18px] w-[18px] text-gray-600" />
+            <Icon name="Category" class="mr-1 h-5 w-5 text-gray-600" />
             <>
               <ul>
                 {post.data.categories.map((category: string, i: number) => (
@@ -87,7 +87,7 @@ const { className, posts, fluid } = Astro.props;
             href={`/${post.slug}`}
             class="hover:text-primary block transition duration-300 font-secondary"
           >
-            {post.data.title}
+            {post.data.title}{''}<Icon name="ArrowCircleRight" class="ml-2 inline"  />
           </a>
         </h3>
         <p class="text-text">
@@ -99,12 +99,6 @@ const { className, posts, fluid } = Astro.props;
           )}
           ...
         </p>
-        <a
-          href={post.slug}
-          class="text-primary inline-flex items-center transition duration-200 hover:opacity-70"
-        >
-          <Icon name="ArrowCircleRight" class="ml-2 inline"  />
-        </a>
       </div>
     ))
   }
