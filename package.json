@@ -22,6 +22,7 @@
     "@react-google-maps/api": "^2.18.1",
     "@types/google.maps": "^3.52.6",
     "@types/mapbox-gl": "^2.7.11",
+    "@types/nodemailer": "^6.4.11",
     "@vercel/node": "^3.0.7",
     "astro": "^3.1.1",
     "astro-google-fonts-optimizer": "^0.2.2",
@@ -40,13 +41,13 @@
     "mapbox-gl": "^2.14.1",
     "marked": "^4.2.12",
     "mdast-util-to-string": "^3.2.0",
+    "nodemailer": "^6.9.5",
     "preact": "^10.13.2",
     "puppeteer-core": "^21.2.1",
     "react-map-gl": "^7.0.23",
     "reading-time": "^1.5.0",
     "rehype-plugin-image-native-lazy-loading": "^1.2.0",
-    "simply-persist-sync": "^1.1.2",
-    "vercel-email": "^0.0.6"
+    "simply-persist-sync": "^1.1.2"
   },
   "devDependencies": {
     "@astrojs/react": "^2.0.2",
