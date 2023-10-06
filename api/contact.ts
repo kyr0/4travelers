@@ -32,10 +32,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           }
         }
 
-      await emailsApi.emailsPost(emailMessageData)
-
-      res.redirect(`${emailConfig.site.base_url}${emailConfig.site.base_path}/contact-thank-you`)
-    } else {
-      res.status(405).send('Method Not Allowed');
+      try {
+        await emailsApi.emailsPost(emailMessageData)
+      } catch(e) {}
     }
+
+    res.redirect(`${emailConfig.site.base_url}${emailConfig.site.base_path}/contact-thank-you`)
 }
