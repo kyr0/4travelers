@@ -31,17 +31,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             Subject: body.subject
           }
         }
-      
-      const sendBulkEmails = (emailMessageData: EmailMessageData): void => {
-        emailsApi.emailsPost(emailMessageData).then((response) => {
-            console.log('API called successfully.');
-            console.log(response.data);
-        }).catch((error) => {
-            console.error(error);
-        });
-      };
-      
-      sendBulkEmails(emailMessageData)
+        
+      await emailsApi.emailsPost(emailMessageData)
 
       Response.redirect(`${emailConfig.site.base_url}${emailConfig.site.base_path}/contact-thank-you`, 301)
     } else {
