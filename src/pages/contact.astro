@@ -62,6 +62,8 @@ const { title, description, meta_title, image } = entry.data;
         </div>
         <div class="sm:col-7 md:col-8">
           <form
+            method="POST"
+            action="/api/contact"
             class="contact-form row gy-2 justify-center"
             data-static-form-name="contact"
           >

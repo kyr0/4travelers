@@ -8503,6 +8503,11 @@ validate-npm-package-name@^4.0.0:
   dependencies:
     builtins "^5.0.0"
 
+vercel-email@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/vercel-email/-/vercel-email-0.0.6.tgz#56f8b2b1474739611d05d04a5c83e023d6663ffb"
+  integrity sha512-lpELZ8/B6qyLMUOzmvZiU5evo1Hv5jfSpI/rrzny5UYfOAUKFYycraXNT+fT/cC6ewUKQVJDg8/v3LwyX3cCzA==
+
 vfile-location@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/vfile-location/-/vfile-location-4.1.0.tgz#69df82fb9ef0a38d0d02b90dd84620e120050dd0"
