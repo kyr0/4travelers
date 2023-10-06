@@ -20,15 +20,15 @@ const { title, description, meta_title, image } = entry.data;
 >
   <section class="section">
     <div class="container">
-      <h2 class="h2 page-heading">Thank you!</h2>
-      <div class="row gy-5 md:gx-5">
+      <h2 class="h2 page-heading">Vielen lieben Dank!</h2>
+      <div class="row gy-5 md:gx-5 mt-4">
         <div class="sm:col-5 md:col-4">
           <p class="mb-8 text-2xl font-bold text-theme-dark">Kontaktdaten</p>
           <ul class="flex flex-col space-y-8">
             <li>
               <div class="flex items-center text-xl text-theme-dark">
                 <Icon name="Email" class="mr-3 text-primary" />
-                <p class="font-semibold">Email</p>
+                <p class="font-semibold">per E-Mail</p>
               </div>
               <p
                 set:html={markdownify(email)}
