@@ -22,6 +22,7 @@
     "@react-google-maps/api": "^2.18.1",
     "@types/google.maps": "^3.52.6",
     "@types/mapbox-gl": "^2.7.11",
+    "@vercel/node": "^3.0.7",
     "astro": "^3.1.1",
     "astro-google-fonts-optimizer": "^0.2.2",
     "astro-purgecss": "^2.0.1",
