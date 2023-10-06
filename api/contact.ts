@@ -7,7 +7,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     
     if (req.method === 'POST') {
 
-      const transport = nodemailer.createTransport('direct')
+      const transport = nodemailer.createTransport('sendmail')
 
       const mailOptions = {
           to: emailConfig.contactinfo.email,
