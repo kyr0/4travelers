@@ -155,30 +155,8 @@ const { title, meta_title, description, image, noindex, canonical } =
       }`}
     />
     <meta name="twitter:card" content="summary_large_image" />
-
-    <script>
-      import { type CookieConsentConfig } from "../layouts/components/CookieConsent";
-      import { cookie } from "@config/config.json";
-      import { cookiePolicyConfig } from "@config/cookiePolicy";
-
-      window.astroCookieConsentConfig = cookiePolicyConfig;
-
-      /*
-      window.astroCookieConsentOnChange = (state) => {
-        console.log("Cookie consent state changed to: ", state);
-      };
-
-      window.astroCookieConsentOnAccept = (state) => {
-        console.log("astroCookieConsentOnAccept: ", state);
-      };
-
-      window.astroCookieConsentOnDeny = (state) => {
-        console.log("astroCookieConsentOnDeny: ", state);
-      };
-      */
-    </script>
-
-    <style is:global>
+    
+    <style type="text/css" is:global>
       :root {
           --cookie-consent-modal-padding: 2rem;
           --cookie-consent-bg: #fff;
@@ -208,6 +186,29 @@ const { title, meta_title, description, image, noindex, canonical } =
           --cookie-consent-privacy-button-distance: 1rem;
       }
     </style>
+
+    <script>
+      import { type CookieConsentConfig } from "../layouts/components/CookieConsent";
+      import { cookie } from "@config/config.json";
+      import { cookiePolicyConfig } from "@config/cookiePolicy";
+
+      window.astroCookieConsentConfig = cookiePolicyConfig;
+
+      /*
+      window.astroCookieConsentOnChange = (state) => {
+        console.log("Cookie consent state changed to: ", state);
+      };
+
+      window.astroCookieConsentOnAccept = (state) => {
+        console.log("astroCookieConsentOnAccept: ", state);
+      };
+
+      window.astroCookieConsentOnDeny = (state) => {
+        console.log("astroCookieConsentOnDeny: ", state);
+      };
+      */
+    </script>
+
 
      <!-- Mixpanel -->
      <script data-astro-cookie-consent="mixpanel" type="text">
