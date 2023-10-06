@@ -23,7 +23,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
               {
                 ContentType: "PlainText",
                 Charset: "utf-8",
-                Content: body.message + "\n\n by " + body.name
+                Content: body.message + " | From: " + body.name
               }
             ],
             From: emailConfig.contactinfo.email,
