@@ -27,13 +27,6 @@ const { title, description, meta_title, image } = entry.data;
           <ul class="flex flex-col space-y-8">
             <li>
               <div class="flex items-center text-xl text-theme-dark">
-                <Icon name="Address" class="mr-3 text-primary" />
-                <p class="font-semibold">Für die Post</p>
-              </div>
-              <p set:html={markdownify(address)} class="mt-2 pl-8 leading-5" />
-            </li>
-            <li>
-              <div class="flex items-center text-xl text-theme-dark">
                 <Icon name="Email" class="mr-3 text-primary" />
                 <p class="font-semibold">Email</p>
               </div>
@@ -42,18 +35,12 @@ const { title, description, meta_title, image } = entry.data;
                 class="content mt-2 pl-8 leading-5"
               />
             </li>
-            <li>
-              <div class="flex items-center text-xl text-theme-dark">
-                <Icon name="Call" class="mr-3 text-primary" />
-                <p class="font-semibold">Phone</p>
-              </div>
-              <p set:html={markdownify(phone)} class="mt-2 pl-8 leading-5" />
-            </li>
           </ul>
         </div>
         <div class="sm:col-7 md:col-8">
           <p>
-            Your message is travelling the waters now.
+            Deine E-Mail ist nun auf dem Weg in unser Postfach. 
+            Wir werden uns so schnell wie möglich bei Dir melden.
           </p>
         </div>
       </div>
