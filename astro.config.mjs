@@ -36,6 +36,7 @@ export default defineConfig({
       start_url: config.site.base_url,
       display: "standalone",
     }),
+    /*
     purgecss({
       blocklist: [],
       safelist: [],
@@ -45,6 +46,7 @@ export default defineConfig({
       rejected: false,
       rejectedCss: false
     })
+    */
   ],
   markdown: {
     remarkPlugins: [remarkReadingTime],
