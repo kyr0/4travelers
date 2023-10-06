@@ -1,36 +1,6 @@
 ---
 ---
 <cookie-consent />
-<style>
-    :root {
-        --cookie-consent-modal-padding: 2rem;
-        --cookie-consent-bg: #fff;
-        --cookie-consent-text: #333;
-        --cookie-consent-link: #555; 
-        --cookie-consent-link-hover: #555;
-        --cookie-consent-primary-color: rgb(32, 76, 147);
-
-        --cookie-consent-chip-bg: #eee;;
-        --cookie-consent-chip-text: #555;
-
-        --cookie-consent-button-bg: #000;
-        --cookie-consent-button-size: 3rem;
-        --cookie-consent-button-text: #fff;
-        --cookie-consent-button-border-radius: 0.5rem;
-        --cookie-consent-button-bg-deny: #777;
-        --cookie-consent-button-bg-accept: var(--cookie-consent-primary-color);
-        --cookie-consent-button-bg-save: #333;
-
-        --cookie-consent-border-radius: 0.5rem;
-        --cookie-consent-box-shadow: 0px 4px 16px rgba(0, 0, 0, .12);
-        --cookie-consent-transition: all .3s;
-        
-        --cookie-consent-privacy-button-bg: rgb(32, 76, 147);
-        --cookie-consent-privacy-button-text: #fff;
-        --cookie-consent-privacy-button-size: 2rem;
-        --cookie-consent-privacy-button-distance: 1rem;
-    }
-</style>
 <script>
 
     import { getStorage } from 'simply-persist-sync';
@@ -140,6 +110,35 @@
                     align-items: center;
                     flex-direction: column;
                     z-index: 10;
+                }
+
+                :root {
+                    --cookie-consent-modal-padding: 2rem;
+                    --cookie-consent-bg: #fff;
+                    --cookie-consent-text: #333;
+                    --cookie-consent-link: #555; 
+                    --cookie-consent-link-hover: #555;
+                    --cookie-consent-primary-color: rgb(32, 76, 147);
+
+                    --cookie-consent-chip-bg: #eee;;
+                    --cookie-consent-chip-text: #555;
+
+                    --cookie-consent-button-bg: #000;
+                    --cookie-consent-button-size: 3rem;
+                    --cookie-consent-button-text: #fff;
+                    --cookie-consent-button-border-radius: 0.5rem;
+                    --cookie-consent-button-bg-deny: #777;
+                    --cookie-consent-button-bg-accept: var(--cookie-consent-primary-color);
+                    --cookie-consent-button-bg-save: #333;
+
+                    --cookie-consent-border-radius: 0.5rem;
+                    --cookie-consent-box-shadow: 0px 4px 16px rgba(0, 0, 0, .12);
+                    --cookie-consent-transition: all .3s;
+                    
+                    --cookie-consent-privacy-button-bg: rgb(32, 76, 147);
+                    --cookie-consent-privacy-button-text: #fff;
+                    --cookie-consent-privacy-button-size: 2rem;
+                    --cookie-consent-privacy-button-distance: 1rem;
                 }
             `
             document.head.appendChild(style)
