@@ -2,7 +2,7 @@
   "site": {
     "title": "4 Travelers Reiseblog",
     "description": "4 Reisende auf Reisen",
-    "base_url": "https://4travelers.blog",
+    "base_url": "https://www.4travelers.blog",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
@@ -29,7 +29,7 @@
 
   "metadata": {
     "meta_author": "Aron Homberg, Michael Mannseicher, Ines Mannseicher, Daria Homberg",
-    "meta_image": "/images/og-image.png",
+    "meta_image": "/images/favicon.png",
     "meta_description": "4 Deutsche bereisen die Welt"
   },
 
