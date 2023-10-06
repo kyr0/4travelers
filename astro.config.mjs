@@ -41,7 +41,7 @@ export default defineConfig({
       safelist: [],
       fontFace: true,
       keyframes: true,
-      variables: true,
+      variables: false,
       rejected: false,
       rejectedCss: false
     })
