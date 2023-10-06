@@ -31,11 +31,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
             Subject: body.subject
           }
         }
-        
+
       await emailsApi.emailsPost(emailMessageData)
 
-      Response.redirect(`${emailConfig.site.base_url}${emailConfig.site.base_path}/contact-thank-you`, 301)
+      res.redirect(`${emailConfig.site.base_url}${emailConfig.site.base_path}/contact-thank-you`)
     } else {
-        res.status(405).send('Method Not Allowed');
+      res.status(405).send('Method Not Allowed');
     }
 }
