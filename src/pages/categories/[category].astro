@@ -26,10 +26,10 @@ const filterByCategory = taxonomyFilter(posts, "categories", category);
 const title = humanize(category || "")
 ---
 
-<Base title={title || "Category"}>
+<Base title={title || "Land / Region"}>
   <div class="section">
     <div class="container">
-      <p class="text-center mb-4">Showing Posts From</p>
+      <p class="text-center mb-4">Geschichten aus:</p>
       <h1 class="h2 mb-16 text-center text-primary">{title}</h1>
       <Posts posts={filterByCategory} fluid={false} />
     </div>

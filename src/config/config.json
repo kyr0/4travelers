@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "4 Travelers Blog",
+    "title": "4 Travelers Reiseblog",
     "description": "4 Reisende auf Reisen",
     "base_url": "https://4travelers.blog",
     "base_path": "/",
@@ -9,32 +9,38 @@
     "logo": "/images/logo-long.svg",
     "logo_width": "278",
     "logo_height": "40",
-    "logo_text": "4 Travellers"
+    "logo_text": "4 Travelers"
   },
+
   "cookie": {
     "name": "4travelers",
     "cookies": [{ "name": "youtube", "durationInMs": 5000 }]
   },
 
+  "mapbox": {
+    "styleUrl": "mapbox://styles/kyr0/clh3csp0b00na01pgcc0o1uz2",
+    "token": "pk.eyJ1Ijoia3lyMCIsImEiOiJjbGgyaWV3b3MwMWVjM2xvYWNqdnYxYmMzIn0.4QkwWjL1aJ-8OPcdpPq_TA"
+  },
+
   "settings": {
     "pagination": 5,
-    "summary_length": 100
+    "summary_length": 20
   },
 
   "metadata": {
-    "meta_author": "Themefisher",
+    "meta_author": "Aron Homberg, Michael Mannseicher, Ines Mannseicher, Daria Homberg",
     "meta_image": "/images/og-image.png",
-    "meta_description": "Bookworm Light Astro Blog Template"
+    "meta_description": "4 Deutsche bereisen die Welt"
   },
 
   "params": {
-    "copyright": "Copyright © 2023 4Travellers.blog"
+    "copyright": "Copyright © 2023, 4Travelers.blog - made with ❤️ around the 🌎 world."
   },
 
   "contactinfo": {
-    "name": "4 Travellers",
-    "address": "355 S Grand Ave <br/> Los Angeles, CA 90071",
-    "email": "info@bookworm.org",
-    "phone": "+800 567 1234"
+    "name": "4 Travelers",
+    "address": "Weidenweg 2C, 85375 Neufahrn",
+    "email": "hallo@4travelers.blog",
+    "phone": "+49 170 5474455"
   }
 }

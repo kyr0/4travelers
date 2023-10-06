@@ -1,4 +1,4 @@
 ---
-title: "Contact"
+title: "💌 Schreib uns doch mal!"
 draft: false
 ---

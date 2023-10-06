@@ -3,32 +3,44 @@ import config from "@config/config.json";
 import { getCollectionEntries } from "@lib/contentParser";
 import dateFormat from "@lib/utils/dateFormat";
 import { humanize, slugify } from "@lib/utils/textConverter";
-import Cloudinary from "./components/Cloudinary.astro";
+import { Image } from "astro:assets"
 import Icon from "./components/Icon.astro";
+import GooglePhoto from "src/components/GooglePhoto.astro";
+
 const authors = await getCollectionEntries("authors");
 const { summary_length } = config.settings;
-const { className, posts, fluid } = Astro.props;
+const { className, posts, fluid } = Astro.props
+const renderedPosts: Array<any> = []
+
+for (const post of posts)  {
+  renderedPosts.push({
+    ...await post.render(),
+    ...post
+  })
+}
+
 ---
 
 <div
   class={`row gy-5 gx-4 ${className} ${
-    posts.length == 1 ? "justify-center" : ""
+    renderedPosts.length == 1 ? "justify-center" : ""
   } `}
 >
   {
-    posts.map((post: any, i: number) => (
+    renderedPosts.map((post: any, i: number) => (
       <div class={i === 0 && fluid != false ? "col-12" : "col-12 sm:col-6"}>
         {post.data.image && (
           <a
             href={`/${post.slug}`}
-            class="hover:text-primary group block overflow-hidden rounded-lg"
+            class="hover:text-primary group block overflow-hidden rounded-lg items-center"
           >
-            <Cloudinary
+            <GooglePhoto
               width={i === 0 ? 925 : 445}
               height={i === 0 ? 475 : 230}
               src={post.data.image}
               alt={post.data.title}
-              class="w-full transition duration-300 group-hover:scale-[1.03]"
+              style={`max-height: ${i === 0 ? "475px" : "230px"}; width: 100%; object-fit: contain; height: auto; max-width: 1200px`}
+              class="w-full transition duration-300 group-hover:scale-[1.03] rounded-lg self-center"
             />
           </a>
         )}
@@ -43,10 +55,10 @@ const { className, posts, fluid } = Astro.props;
               .map((author) => (
                 <a
                   href={`/authors/${slugify(author.data.title)}`}
-                  class="hover:text-primary flex items-center font-medium"
+                  class="hover:text-primary inline-block items-center font-medium pl-4"
                 >
                   {author.data.image && (
-                    <Cloudinary
+                    <Image
                       src={author.data.image}
                       alt={author.data.title}
                       height={50}
@@ -58,13 +70,19 @@ const { className, posts, fluid } = Astro.props;
                 </a>
               ))}
           </li>
+
           <li class="mr-5 flex flex-wrap items-center font-medium">
             <Icon name="Calendar" class="mr-1 h-5 w-5 text-gray-600" />
             <>{dateFormat(post.data.date)}</>
           </li>
 
+          <li class="mx-3 flex flex-wrap items-center font-medium">
+            <Icon name="Time" class="mr-1 h-5 w-5 text-gray-600" />
+            {Math.round(post.remarkPluginFrontmatter?.estReadingTime) || "< 1"} Min. Lesezeit
+          </li>
+
           <li class="mr-5 flex flex-wrap items-center">
-            <Icon name="Category" class="mr-1 h-5 w-5 text-gray-600" />
+            <Icon name="Address" class="mr-1 h-5 w-5 text-gray-600" />
             <>
               <ul>
                 {post.data.categories.map((category: string, i: number) => (
@@ -91,12 +109,12 @@ const { className, posts, fluid } = Astro.props;
           </a>
         </h3>
         <p class="text-text">
-          {post.body?.slice(
+          {post.data.description?.split(' ').slice(
             0,
             Number(
               i === 0 && fluid != false ? summary_length * 2 : summary_length
             )
-          )}
+          ).join(' ')}
           ...
         </p>
       </div>

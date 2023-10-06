@@ -1,0 +1,80 @@
+---
+import { downloadImage } from '@lib/download-image';
+import { Image } from 'astro:assets';
+
+export interface Props {
+    src: string;
+    alt: string;
+    caption?: string;
+    width?: number;
+    height?: number;
+    class?: string;
+    style?: string
+}
+
+// TODO: refactor for full support of all parameters:
+// https://developers.google.com/people/image-sizing
+function adjustImageUrl(imageUrl: string, newWidth?: number, newHeight?: number): { url: string, width?: number, height?: number } {
+    const match = imageUrl.match(/=w(\d+)-h(\d+)-no/);
+
+    if (!match) {
+        throw new Error('Invalid imageUrl format');
+    }
+
+    const originalWidth = parseInt(match[1], 10);
+    const originalHeight = parseInt(match[2], 10);
+
+    if (newWidth === undefined && newHeight === undefined) {
+        // No new dimensions provided, return the original URL
+        return {
+            url: imageUrl,
+            width: originalWidth,
+            height: originalHeight,
+        };
+    }
+
+    let aspectRatio = originalWidth / originalHeight;
+
+    if (newWidth !== undefined && newHeight === undefined) {
+        newHeight = Math.round(newWidth / aspectRatio);
+    } else if (newHeight !== undefined && newWidth === undefined) {
+        newWidth = Math.round(newHeight * aspectRatio);
+    }
+
+    // Replace the old dimensions with the new ones
+    return {
+        url: imageUrl.replace(`=w${originalWidth}-h${originalHeight}-no`, `=w${newWidth}-h${newHeight}-no`),
+        width: newWidth || originalWidth,
+        height: newHeight || originalHeight,
+    };
+}
+
+let { src, alt, width, height, class: className, style, caption } = Astro.props as Props;
+
+
+if (src.indexOf('googleusercontent.com') > -1) {
+    const newValues = adjustImageUrl(src, width, height)
+    src = newValues.url;
+    width = newValues.width;
+    height = newValues.height;
+}
+
+
+if (!src) {
+    throw new Error("The src attribute of <GooglePhoto /> is required")
+}
+
+// cache
+const cachedFile = await downloadImage(src, width, height);
+
+const cachedFileSrc = import(`../../${cachedFile}`);
+---
+<style>
+    [data-google-photo] {
+        border-radius: 0.5rem;
+    }
+</style>
+<figure>
+    <Image src={cachedFileSrc} data-google-photo alt={alt} width={width!} style={style} height={height!} class={className} format="webp" />
+    {caption && <figcaption>{caption}</figcaption>}
+</figure>

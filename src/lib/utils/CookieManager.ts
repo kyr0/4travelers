@@ -52,6 +52,7 @@ export class CookieManager {
   public remove = (): void => {
     this.setCookie(this.name, '', new Date());
   };
+  
   protected setCookie = (
     cname: string,
     value: string,

@@ -5,8 +5,17 @@ import Icon from "./Icon.astro";
 const { base_url } = config.site;
 const { title, description, slug, className } = Astro.props;
 ---
-
 <ul class={`${className}`}>
+  <li class="inline-block">
+    <a
+      aria-label="facebook share button"
+      href={`https://wa.me/?text=${base_url}/${slug}`}
+      target="_blank"
+      rel="noreferrer noopener"
+    >
+      <Icon name="Whatsapp" />
+    </a>
+  </li>
   <li class="inline-block">
     <a
       aria-label="facebook share button"

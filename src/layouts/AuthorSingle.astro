@@ -2,7 +2,8 @@
 
 import Social from "@components/Social.astro";
 import { markdownify } from "@lib/utils/textConverter";
-import Cloudinary from "./components/Cloudinary.astro";
+import { Image } from "astro:assets";
+import GooglePhoto from "../components/GooglePhoto.astro";
 
 const { author } = Astro.props;
 const { title, image, social } = author.data;
@@ -12,19 +13,17 @@ const { Content } = await author.render();
 <section class="section">
   <div class="container">
     <div class="mb-4 text-center md:px-24">
-      {
-        image && (
-          <div class="mb-8">
-            <Cloudinary
-              src={image}
-              class="mx-auto rounded-lg"
-              height={150}
-              width={150}
-              alt={title}
-            />
-          </div>
-        )
-      }
+      {author.data.image && (
+        <div class="mb-4">
+          <Image
+            src={author.data.image}
+            alt={author.data.title}
+            format="webp"
+            height={150}
+            class="mx-auto rounded-lg"
+          />
+        </div>
+      )}
       <h1 set:html={markdownify(title)} class="page-heading h2 mb-8" />
 
       <Social source={social} className="social-icons-simple" />

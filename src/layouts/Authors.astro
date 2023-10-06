@@ -1,21 +1,32 @@
 ---
 import { markdownify } from "@lib/utils/textConverter";
-import Cloudinary from "./components/Cloudinary.astro";
 import Icon from "./components/Icon.astro";
+import { Image } from "astro:assets";
+import GooglePhoto from "src/components/GooglePhoto.astro";
 const { authors } = Astro.props;
 ---
 
 <div class="row justify-center">
   {
     authors.map((author: any) => (
-      <div class="col-12 sm:col-6 md:col-4 mb-8">
-        {author.data.image && (
+      <div class="col-12 sm:col-6 md:col-6 mb-8 items-center">
+        {author.data.googlephoto && (
           <div class="mb-4">
-            <Cloudinary
-              src={author.data.image}
+            <GooglePhoto
+              src={author.data.googlephoto}
               alt={author.data.title}
               height={150}
-              width={150}
+              class="mx-auto rounded-lg"
+            />
+          </div>
+        )}
+        {author.data.image && (
+          <div class="mb-4">
+            <Image
+              src={author.data.image}
+              alt={author.data.title}
+              format="webp"
+              height={150}
               class="mx-auto rounded-lg"
             />
           </div>
@@ -28,7 +39,7 @@ const { authors } = Astro.props;
             {author.data.title}{''}<Icon name="ArrowCircleRight" class="ml-2 inline"  />
           </a>
         </h3>
-        <p class="mb-3" set:text={markdownify(author.body.slice(0, 100))} />
+        <p class="mb-3" set:text={markdownify(author.body)} />
       </div>
     ))
   }

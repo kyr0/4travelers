@@ -4,7 +4,7 @@ import { getCollectionEntries } from "@lib/contentParser";
 
 export const prerender = true
 
-export const get: APIRoute = async () => {
+export const GET: APIRoute = async () => {
 
   // Retrieve all articles
   const posts = await getCollectionEntries("posts");
@@ -16,10 +16,7 @@ export const get: APIRoute = async () => {
     content: item.body,
   }));
 
-
-  return {
-    body: JSON.stringify({
-      searchList,
-    }),
-  }
+  return new Response(JSON.stringify({
+    searchList,
+  }));
 }

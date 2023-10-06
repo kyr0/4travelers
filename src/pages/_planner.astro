@@ -1,0 +1,36 @@
+---
+import MapPlanner from "@client-components/MapPlanner";
+import Base from "@layouts/Base.astro";
+
+export const prerender = true
+---
+
+<Base>
+  <section class="section">
+    <div class="container">
+      <MapPlanner client:only="preact" />
+
+      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1hefI__vj88HiI3S6_E82Xtr8VEXUICw&ehbc=2E312F" width="640" height="480"></iframe>
+    </div>
+  </section>
+
+  <script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyDwifk7VxJXVs0GwmXEagn8WHmBwDK6dtI",
+    authDomain: "travelers-blog-581b2.firebaseapp.com",
+    projectId: "travelers-blog-581b2",
+    storageBucket: "travelers-blog-581b2.appspot.com",
+    messagingSenderId: "500319404935",
+    appId: "1:500319404935:web:816890d2f2b2cc13ef8922"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+</Base>

@@ -6,8 +6,15 @@ import theme from "@config/theme.json";
 import { plainify } from "@lib/utils/textConverter";
 import Footer from "@partials/Footer.astro";
 import Header from "@partials/Header.astro";
-import { ScrollUpButton } from "./components/ScrollUpButton.react";
+import { ScrollUpButton } from "@client-components/ScrollUpButton.react";
+import {ViewTransitions} from 'astro:transitions';
 import "@styles/style.scss";
+import CookieConsent from "../layouts/components/CookieConsent.astro";
+import bg from "../images/bg.avif"
+import { getImage } from "astro:assets"
+
+const MIXPANEL_TOKEN = import.meta.env.MIXPANEL_TOKEN
+const bgImg = `url(${(await getImage({ src: bg })).src})`
 
 // font families
 const pf = theme.fonts.font_family.primary;
@@ -16,12 +23,19 @@ const fontUrl = new URL(`https://fonts.googleapis.com/css2?family=${pf}${
         sf ? "&family=" + sf : ""
       }&display=swap`)
 
+export interface Image { 
+  src: string; 
+  width: number; 
+  height: number; 
+  format: "png" | "jpg" | "jpeg" | "tiff" | "webp" | "gif" | "svg" | "avif"; 
+}
+
 // types for frontmatters
 export interface Props {
   title?: string;
   meta_title?: string;
   description?: string;
-  image?: string;
+  image?: Image | string;
   noindex?: boolean;
   canonical?: string;
 }
@@ -50,7 +64,6 @@ const { title, meta_title, description, image, noindex, canonical } =
       content="#000"
     />
 
-    <meta name="generator" content={Astro.generator} />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
     <!-- google font css -->
@@ -68,6 +81,8 @@ const { title, meta_title, description, image, noindex, canonical } =
     <title>
       {plainify(meta_title ? meta_title : title ? title : config.site.title)}
     </title>
+    
+    <ViewTransitions />
 
     <!-- canonical url -->
     {canonical && <link rel="canonical" href={canonical} item-prop="url" />}
@@ -82,6 +97,7 @@ const { title, meta_title, description, image, noindex, canonical } =
         description ? description : config.metadata.meta_description
       )}
     />
+
 
     <!-- author from config.json -->
     <meta name="author" content={config.metadata.meta_author} />
@@ -139,15 +155,57 @@ const { title, meta_title, description, image, noindex, canonical } =
       }`}
     />
     <meta name="twitter:card" content="summary_large_image" />
-    <script>
-      import { CookieManager } from "@lib/utils/CookieManager";
-      import { cookie } from "@config/config.json";
 
-     const cm = new CookieManager(cookie.name, cookie.cookies);
-     window.CM = cm; 
+    <script>
+      import { type CookieConsentConfig } from "../layouts/components/CookieConsent";
+      import { cookie } from "@config/config.json";
+      import { cookiePolicyConfig } from "@config/cookiePolicy";
+
+      window.astroCookieConsentConfig = cookiePolicyConfig;
+
+      window.astroCookieConsentOnChange = (state) => {
+        console.log("Cookie consent state changed to: ", state);
+      };
+
+      window.astroCookieConsentOnAccept = (state) => {
+        console.log("astroCookieConsentOnAccept: ", state);
+      };
+
+      window.astroCookieConsentOnDeny = (state) => {
+        console.log("astroCookieConsentOnDeny: ", state);
+      };
+    </script>
+
+    <!-- how to change style
+    <style>
+      :root {
+          --cookie-consent-modal-padding: 1rem;
+          --cookie-consent-bg: #cc0000;
+      }
+    </style>
+     -->
+
+     <!-- Mixpanel -->
+     <script data-astro-cookie-consent="mixpanel" type="text">
+      console.log('mixpanel activated');
+      (function(f,b){if(!b.__SV){var e,g,i,h;window.mixpanel=b;b._i=[];b.init=function(e,f,c){function g(a,d){var b=d.split(".");2==b.length&&(a=a[b[0]],d=b[1]);a[d]=function(){a.push([d].concat(Array.prototype.slice.call(arguments,0)))}}var a=b;"undefined"!==typeof c?a=b[c]=[]:c="mixpanel";a.people=a.people||[];a.toString=function(a){var d="mixpanel";"mixpanel"!==c&&(d+="."+c);a||(d+=" (stub)");return d};a.people.toString=function(){return a.toString(1)+".people (stub)"};i="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking start_batch_senders people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+      for(h=0;h<i.length;h++)g(a,i[h]);var j="set set_once union unset remove delete".split(" ");a.get_group=function(){function b(c){d[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));a.push([e,call2])}}for(var d={},e=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<j.length;c++)b(j[c]);return d};b._i.push([e,f,c])};b.__SV=1.2;e=f.createElement("script");e.type="text/javascript";e.async=!0;e.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"file:"===f.location.protocol&&"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";g=f.getElementsByTagName("script")[0];g.parentNode.insertBefore(e,g)}})(document,window.mixpanel||[]);
+    </script>
+
+    <script define:vars={{ MIXPANEL_TOKEN }}>
+      window.initMixpanel = () => {
+        if (!window._mixpanel_initialized) {
+          mixpanel.init(MIXPANEL_TOKEN, { debug: true, track_pageview: true, persistence: 'localStorage' });
+          window._mixpanel_initialized = true
+        } else {
+          mixpanel.track_pageview()
+        }
+      }
     </script>
   </head>
+
   <body>
+    <CookieConsent />
     <TwSizeIndicator />
     <Header />
     <main id="main-content" class="min-h-[60vh]">
@@ -155,18 +213,21 @@ const { title, meta_title, description, image, noindex, canonical } =
     </main>
     <ScrollUpButton client:only="preact" />
     <Footer />
+
+
+    <script data-astro-cookie-consent="mixpanel" type="text">
+      window.initMixpanel()      
+    </script>
   </body>
 
-  <style>
+  <style define:vars={{ bgImg }}>
     body {
       background-image: linear-gradient(
           to bottom,
           rgba(245, 246, 252, 0.85),
           rgba(255, 255, 255, 0.8)
-        ),
-        url("https://images.unsplash.com/photo-1471922694854-ff1b63b20054?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1772&q=80");
+        ), var(--bgImg);
       background-size: cover;
-      background-color: rgba(255, 255, 255, 0.5);
     }
   </style>
 </html>

@@ -7,7 +7,7 @@ export const getCollectionEntries = async <T extends "about" | "authors" | "page
   // @ts-ignore
   const removeIndex = allPage.filter((data) => data.id !== "_index.md");
   // @ts-ignore
-  const removeDrafts = removeIndex.filter((data) => !data.draft);
+  const removeDrafts = removeIndex.filter((data) => data.draft !== false);
 
   return removeDrafts;
 };

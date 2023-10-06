@@ -3,11 +3,10 @@ import AuthorSingle from "@layouts/AuthorSingle.astro";
 import Base from "@layouts/Base.astro";
 import { getCollectionEntries } from "@lib/contentParser";
 import dateFormat from "@lib/utils/dateFormat";
-
 import { sortByDate } from "@lib/utils/sortFunctions";
 import { humanize, slugify } from "@lib/utils/textConverter";
-import Cloudinary from "@layouts/components/Cloudinary.astro";
 import Icon from "@layouts/components/Icon.astro";
+import GooglePhoto from "src/components/GooglePhoto.astro";
 
 export const prerender = true;
 
@@ -49,7 +48,7 @@ const currentPosts = sortPostsByDate.filter((post) => {
     currentPosts.length > 0 && (
       <section class="section pt-0">
         <div class="container">
-          <h2 class="h3 mb-8 text-center">Recent Posts</h2>
+          <h2 class="h3 mb-8 text-center">Andere Geschichten</h2>
           <div
             class={`row gy-4 ${
               currentPosts.length < 3 ? "justify-center" : ""
@@ -62,9 +61,10 @@ const currentPosts = sortPostsByDate.filter((post) => {
                     href={`/${post.slug}`}
                     class="hover:text-primary group block overflow-hidden rounded-lg"
                   >
-                    <Cloudinary
+                    <GooglePhoto
                       width={445}
                       height={230}
+                      style={`max-height: 162px; width: auto;`} 
                       src={post.data.image}
                       alt={post.data.title}
                       class="w-full transition duration-300 group-hover:scale-[1.05]"
@@ -77,7 +77,7 @@ const currentPosts = sortPostsByDate.filter((post) => {
                     <>{dateFormat(post.data.date)}</>
                   </li>
                   <li class="mb-2 mr-4 flex flex-wrap items-center">
-                    <Icon name="Category" class="mr-1 h-[16px] w-[16px] text-gray-600" />
+                    <Icon name="Address" class="mr-1 h-[16px] w-[16px] text-gray-600" />
                     <>
                       <ul>
                         {post.data.categories.map(

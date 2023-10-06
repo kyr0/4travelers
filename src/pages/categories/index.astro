@@ -9,10 +9,10 @@ export const prerender = true;
 const categories = await getTaxonomy("posts", "categories");
 ---
 
-<Base title={"Categories"}>
+<Base title={"Themen"}>
   <section class="section">
     <div class="container text-center">
-      <h1 class="h2 page-heading">Categories</h1>
+      <h1 class="h2 page-heading">Themen</h1>
       <ul class="space-x-4">
         {
           categories.map((category) => (
@@ -21,7 +21,7 @@ const categories = await getTaxonomy("posts", "categories");
                 href={`/categories/${category}`}
                 class="bg-theme-light text-dark hover:bg-primary group flex items-center rounded-lg px-4 py-2 transition hover:text-white"
               >
-                <Icon name="Category" class="text-primary mr-1 h-6 w-6 scale-75 transition group-hover:text-white" />
+                <Icon name="Address" class="text-primary mr-1 h-6 w-6 scale-75 transition group-hover:text-white" />
                 <>{humanize(category || "")}</>
               </a>
             </li>

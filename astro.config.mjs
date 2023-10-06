@@ -4,18 +4,18 @@ import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
 import robotsTxt from 'astro-robots-txt';
 import config from "./src/config/config.json";
-import cloudflare from "@astrojs/cloudflare";
 import preact from '@astrojs/preact';
 import webmanifest from "astro-webmanifest";
 import { remarkReadingTime } from "./src/lib/remarkReadingTime";
 import lazyLoadPlugin from "rehype-plugin-image-native-lazy-loading";
 import purgecss from 'astro-purgecss';
 import serviceWorker from "astrojs-service-worker";
+import vercel from '@astrojs/vercel/static';
 
 // https://astro.build/config
 export default defineConfig({
   output: "static",
-  //adapter: cloudflare({ mode:'directory' }),
+  adapter: vercel(),
   site: config.site.base_url,
   base: config.site.base_path,
   trailingSlash: config.site.trailing_slash ? "always" : "never",

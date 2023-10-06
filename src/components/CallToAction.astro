@@ -1,0 +1,27 @@
+---
+export interface Props {
+    href: string;
+    class?: string;
+    style?: string;
+}
+
+let { href, class: className, style } = Astro.props as Props;
+
+---
+<center>
+    <style>
+        a[data-cta] {
+            text-decoration: none;
+        }
+
+        a[data-cta]:hover {
+            text-decoration: underline;
+        }
+        
+    </style>
+    <a href={href} data-cta target="_blank" class=`btn btn-primary ${className}` style={style}>
+        <slot />
+    </a>
+    <br />
+    <i><sub>* damit unterstützt Du unsere journalistische Arbeit. Vielen Dank!</sub></i>
+</center>

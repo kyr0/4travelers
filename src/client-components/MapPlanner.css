@@ -1,0 +1,31 @@
+.mapboxgl-ctrl-logo,
+.mapboxgl-ctrl-attrib {
+  display: none !important;
+}
+
+.mapboxgl-marker {
+  border: none;
+  cursor: pointer;
+}
+
+.mapboxgl-ctrl-scale {
+  margin-bottom: 0 !important;
+}
+
+.mapboxgl-ctrl-geocoder--input {
+  margin-left: 22px !important;
+}
+.mapboxgl-ctrl-geocoder--icon-search {
+  margin-top: 2px !important
+}
+
+@media screen and (min-width: 640px) {
+  .mapboxgl-ctrl-geocoder {
+      width: 300px !important;
+  }
+
+  #mapbox-directions-origin-input .mapboxgl-ctrl-geocoder,
+  .mapbox-directions-destination .mapboxgl-ctrl-geocoder {
+      width: 260px !important;
+  }
+}

@@ -1,61 +1,65 @@
 {
   "main": [
     {
-      "name": "Home",
+      "name": "Blog",
       "url": "/"
     },
     {
-      "name": "About",
-      "url": "/about"
-    },
-    {
-      "name": "Contact",
-      "url": "/contact"
-    },
-    {
-      "name": "Pages",
-      "url": "",
+      "name": "Länder & Regionen",
+      "url": "/categories",
       "hasChildren": true,
       "children": [
         {
-          "name": "Authors",
-          "url": "/authors"
+          "name": "🇮🇩 Bali",
+          "url": "/categories/bali"
         },
         {
-          "name": "Categories",
-          "url": "/categories"
+          "name": "🇮🇩 Indonesien",
+          "url": "/categories/indonesien"
         },
         {
-          "name": "Tags",
-          "url": "/tags"
-        },
-        {
-          "name": "Elements",
-          "url": "/elements"
-        },
-        {
-          "name": "Privacy Policy",
-          "url": "/privacy-policy"
+          "name": "🇹🇭 Thailand",
+          "url": "/categories/thailand"
         }
       ]
+    },
+    {
+      "name": "Nach Themen",
+      "url": "/tags"
+    },
+    {
+      "name": "Über uns",
+      "url": "/about"
+    },
+    {
+      "name": "Kontakt",
+      "url": "/contact"
     }
   ],
   "footer": [
     {
-      "name": "About",
+      "name": "Über uns",
       "url": "/about"
     },
     {
-      "name": "Contact",
+      "name": "Kontakt",
       "url": "/contact"
     },
     {
-      "name": "Elements",
-      "url": "/elements"
+      "name": "RSS-Feed",
+      "url": "/rss.xml"
     },
     {
-      "name": "Privacy Policy",
+      "name": "Datenschutz",
       "url": "/privacy-policy"
+    },
+    {
+      "name": "Datenschutz-Einstellungen",
+      "url": "javascript:openAstroCookieConsent()"
+    },
+    {
+      "name": "Impressum",
+      "url": "/legal-notice"
     }
   ]
 }

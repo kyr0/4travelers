@@ -21,34 +21,43 @@ const { title, description, meta_title, image } = entry.data;
   <section class="section">
     <div class="container">
       <h1 set:html={markdownify(title)} class="h2 page-heading" />
-      <div class="row gy-5 md:gx-5">
+
+      <p>
+        Bereitest Du Dich vielleicht auf eine Reise vor und bist Dir nicht sicher, was Du einpacken oder zuhause lassen solltest? Du hast noch nie gesurft und möchtest wissen, wo auf Bali man es am besten lernen kann? Du hast Anregungen oder konstruktive Kritik? Dann schreib uns einfach!
+      </p>
+
+      <div class="row gy-5 md:gx-5 mt-4">
         <div class="sm:col-5 md:col-4">
-          <p class="mb-8 text-2xl font-bold text-theme-dark">Contact Info</p>
+          <p class="mb-8 text-2xl font-bold text-theme-dark">Kontaktdaten</p>
           <ul class="flex flex-col space-y-8">
+            <!--
             <li>
               <div class="flex items-center text-xl text-theme-dark">
                 <Icon name="Address" class="mr-3 text-primary" />
-                <p class="font-semibold">Address</p>
+                <p class="font-semibold">per Post</p>
               </div>
               <p set:html={markdownify(address)} class="mt-2 pl-8 leading-5" />
             </li>
+             -->
             <li>
               <div class="flex items-center text-xl text-theme-dark">
                 <Icon name="Email" class="mr-3 text-primary" />
-                <p class="font-semibold">Email</p>
+                <p class="font-semibold">per E-Mail</p>
               </div>
               <p
                 set:html={markdownify(email)}
                 class="content mt-2 pl-8 leading-5"
               />
             </li>
+            <!--
             <li>
               <div class="flex items-center text-xl text-theme-dark">
                 <Icon name="Call" class="mr-3 text-primary" />
-                <p class="font-semibold">Phone</p>
+                <p class="font-semibold">Mobil</p>
               </div>
               <p set:html={markdownify(phone)} class="mt-2 pl-8 leading-5" />
             </li>
+             -->
           </ul>
         </div>
         <div class="sm:col-7 md:col-8">
@@ -58,7 +67,7 @@ const { title, description, meta_title, image } = entry.data;
           >
             <div class="lg:col-6">
               <label class="mb-2 block" for="name"
-                >Name <span class="text-red-600">*</span></label
+                >Dein Name <span class="text-red-600">*</span></label
               >
               <input
                 class="form-input w-full"
@@ -69,7 +78,7 @@ const { title, description, meta_title, image } = entry.data;
             </div>
             <div class="lg:col-6">
               <label class="mb-2 block" for="email"
-                >Email <span class="text-red-600">*</span></label
+                >Deine E-Mail <span class="text-red-600">*</span></label
               >
               <input
                 class="form-input w-full"
@@ -79,17 +88,17 @@ const { title, description, meta_title, image } = entry.data;
               />
             </div>
             <div class="col-12">
-              <label class="mb-2 block" for="subject">Subject</label>
+              <label class="mb-2 block" for="subject">Betreff</label>
               <input class="form-input w-full" name="subject" type="text" />
             </div>
             <div class="col-12">
               <label class="mb-2 block" for="message"
-                >Message <span class="text-red-600">*</span></label
+                >Deine Nachricht <span class="text-red-600">*</span></label
               >
               <textarea class="form-textarea w-full" rows="4"></textarea>
             </div>
             <div class="col-12">
-              <button class="btn btn-primary mt-2">Submit Now</button>
+              <button class="btn btn-primary mt-2">✈️ Absenden</button>
             </div>
           </form>
         </div>

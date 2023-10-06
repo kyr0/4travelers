@@ -1,5 +1,9 @@
 {
   "extends": "astro/tsconfigs/base",
+  "include": [
+    "functions/**/*",
+    "src/**/*"
+  ],
   "compilerOptions": {
     "jsx": "react-jsx",
     "baseUrl": ".",
@@ -7,9 +11,13 @@
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "strictNullChecks": true,
+    "types": ["@cloudflare/workers-types"],
     "paths": {
       "@layouts/*": ["./src/layouts/*"],
       "@components/*": ["./src/layouts/components/*"],
+      "@client-components/*": [
+        "./src/client-components/*"
+      ],
       "@partials/*": ["./src/layouts/partials/*"],
       "@shortcodes/*": ["./src/layouts/shortcodes/*"],
       "@config/*": ["./src/config/*"],

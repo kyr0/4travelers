@@ -2,7 +2,7 @@ import rss from '@astrojs/rss'
 import config from "../config/config.json"
 import { getCollectionEntries } from "@lib/contentParser";
 
-export const get = async (context) => {
+export const GET = async (context) => {
   const posts = await getCollectionEntries("posts");
   return rss({
     title: config.site.title,
@@ -13,6 +13,6 @@ export const get = async (context) => {
       pubDate: post.data.date,
       description: post.data.description,
       link: post.slug,
-    })),
+    })) as any,
   })
 }

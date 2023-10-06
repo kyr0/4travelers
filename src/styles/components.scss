@@ -96,8 +96,14 @@ footer p a {
 .post-author {
   @apply flex w-full rounded-xl p-5 opacity-80 bg-theme-light;
 
+
+
   .author-image {
     @apply mr-5;
+  }
+
+  img {
+    height: fit-content;
   }
 
   .author-name {
