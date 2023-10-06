@@ -26,7 +26,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
                 Content: body.message + "\n\n by " + body.name
               }
             ],
-            From: body.email,
+            From: emailConfig.contactinfo.email,
+            ReplyTo: body.email,
             Subject: body.subject
           }
         }
