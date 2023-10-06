@@ -37,5 +37,5 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       } catch(e) {}
     }
 
-    res.redirect(`${emailConfig.site.base_url}${emailConfig.site.base_path}/contact-thank-you`)
+    res.redirect(301, `/contact-thank-you`)
 }
