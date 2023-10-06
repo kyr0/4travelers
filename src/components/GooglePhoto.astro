@@ -16,13 +16,14 @@ export interface Props {
 // https://developers.google.com/people/image-sizing
 function adjustImageUrl(imageUrl: string, newWidth?: number, newHeight?: number): { url: string, width?: number, height?: number } {
     const match = imageUrl.match(/=w(\d+)-h(\d+)-no/);
+    const matchQuad = imageUrl.match(/=s(\d+)-no/);
 
-    if (!match) {
+    if (!match && !matchQuad) {
         throw new Error('Invalid imageUrl format');
     }
 
-    const originalWidth = parseInt(match[1], 10);
-    const originalHeight = parseInt(match[2], 10);
+    const originalWidth = matchQuad ?  parseInt(matchQuad[1], 10) : parseInt(match![1], 10);
+    const originalHeight = matchQuad ? parseInt(matchQuad[1], 10) : parseInt(match![2], 10);
 
     if (newWidth === undefined && newHeight === undefined) {
         // No new dimensions provided, return the original URL
@@ -74,7 +75,9 @@ const cachedFileSrc = src; //import(`../../${cachedFile}`);
         border-radius: 0.5rem;
     }
 </style>
-<figure>
-    <Image src={cachedFileSrc} data-google-photo alt={alt} width={width!} style={style} height={height!} class={className} format="webp" />
-    {caption && <figcaption>{caption}</figcaption>}
-</figure>
+<center>
+    <figure>
+        <Image src={cachedFileSrc} data-google-photo alt={alt} width={width!} style={style} height={height!} class={className} format="webp" />
+        {caption && <figcaption>{caption}</figcaption>}
+    </figure>
+</center>
