@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build-serviceworker": "node ./build-serviceworker.mjs",
+    "build": "astro build && yarn build-serviceworker",
     "preview": "yarn build && astro preview"
   },
   "dependencies": {
@@ -18,6 +19,7 @@
     "@elasticemail/elasticemail-client-ts-axios": "^4.0.22",
     "@googlemaps/js-api-loader": "^1.15.1",
     "@googlemaps/react-wrapper": "^1.1.35",
+    "@jsheaven/easybuild": "^1.2.9",
     "@mapbox/mapbox-gl-directions": "^4.1.1",
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
     "@react-google-maps/api": "^2.18.1",

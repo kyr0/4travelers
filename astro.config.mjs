@@ -11,6 +11,23 @@ import lazyLoadPlugin from "rehype-plugin-image-native-lazy-loading";
 import purgecss from 'astro-purgecss';
 import serviceWorker from "astrojs-service-worker";
 import vercel from '@astrojs/vercel/static';
+import { writeFile } from "fs/promises"
+import { resolve } from "path"
+
+// writes a last update timestamp for the post web notification feature to 
+// be able to detect new posts
+export const lastUpdateTime = () => {
+  return {
+    name: 'lastUpdateTime',
+    hooks: {
+      'astro:build:generated': async(options) => {
+        const postLockFile = resolve(`${options.dir.pathname}/lastupdatetime.lock`)
+        await writeFile(postLockFile, new Date().toISOString(), { flag: 'w' })
+        console.log('Updated last update time lockfile', postLockFile)
+      }
+    }
+  }
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,6 +37,7 @@ export default defineConfig({
   base: config.site.base_path,
   trailingSlash: config.site.trailing_slash ? "always" : "never",
   integrations: [
+    lastUpdateTime(),
     robotsTxt(),
     serviceWorker(),
     preact({ compat: true }),

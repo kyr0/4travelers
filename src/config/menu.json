@@ -5,7 +5,22 @@
       "url": "/"
     },
     {
-      "name": "Länder & Regionen",
+      "name": "Reisen",
+      "url": "/reisen",
+      "hasChildren": true,
+      "children": [
+        {
+          "name": "Aron & Daria",
+          "url": "/reisen/aron_und_daria"
+        },
+        {
+          "name": "Michi & Ines",
+          "url": "/reisen/michi_und_ines"
+        }
+      ]
+    },
+    {
+      "name": "Regionen",
       "url": "/categories",
       "hasChildren": true,
       "children": [
@@ -24,7 +39,7 @@
       ]
     },
     {
-      "name": "Nach Themen",
+      "name": "Themen",
       "url": "/tags"
     },
     {

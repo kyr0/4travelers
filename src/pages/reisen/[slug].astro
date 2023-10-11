@@ -1,0 +1,54 @@
+---
+import config from "@config/config.json";
+import Base from "@layouts/Base.astro";
+import Icon from "@layouts/components/Icon.astro";
+import { markdownify } from "@lib/utils/textConverter";
+import { getEntryBySlug } from "astro:content";
+import Polarsteps from "src/components/Polarsteps.astro";
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+
+  const allPages = [{
+    title: "Reise von Aron & Daria",
+    slug: "aron_und_daria",
+    polarstepsName: "AronHomberg/9156215-arons-darias-weltreise",
+  }, {
+    title: "Reise von Michi & Ines",
+    slug: "michi_und_ines",
+    polarstepsName: "InesMannseicherStadl/8931675-michi-und-ines-reise",
+}];
+
+  const paths = allPages.map((page) => ({
+    params: {
+        slug: page.slug,
+    },
+    props: { ...page },
+  }));
+  return paths;
+}
+
+const { title, polarstepsName } = Astro.props
+---
+
+<Base
+  title={title}
+  meta_title={title}
+  description={"Hier siehst Du wir wir bereits waren und wo wir noch hin wollen."}
+>
+  <section class="section">
+    <div class="container">
+      <h1 set:html={markdownify(title)} class="h2 page-heading" />
+
+      <p>
+        Hier findest Du unsere Reise mit kurzen Updates. Rot markiert ist die Location,
+        an der wir uns gerade befinden. 
+      </p>
+
+      <div class="row gy-5 md:gx-5 mt-4">
+        <Polarsteps name={polarstepsName} />
+      </div>
+    </div>
+  </section>
+</Base>

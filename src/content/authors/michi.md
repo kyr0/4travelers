@@ -1,6 +1,7 @@
 ---
 title: Michi
 image: ../../images/authors/michi.jpg
+journeyLink: /reisen/michi_und_ines
 description: Ich bin Software Entwickler aus der Nähe von München, habe den Computer bei Seite gelegt und reise durch die Welt.
 social:
   facebook: https://www.facebook.com/

@@ -24,6 +24,7 @@ const authorsCollection = defineCollection({
     image: image().optional(),
     googlephoto: z.string().optional(),
     description: z.string().optional(),
+    journeyLink: z.string().optional(),
     social: z
       .object({
         facebook: z.string().optional(),

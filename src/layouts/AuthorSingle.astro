@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
 import GooglePhoto from "../components/GooglePhoto.astro";
 
 const { author } = Astro.props;
-const { title, image, social } = author.data;
+const { title, image, social, journeyLink } = author.data;
 const { Content } = await author.render();
 ---
 
@@ -30,6 +30,10 @@ const { Content } = await author.render();
       <div class="content">
         <Content />
       </div>
+
+      <a class="btn bg-primary text-white py-2 my-2 mx-2" href={journeyLink}>
+        zur Reise von {author.data.title}
+      </a>
     </div>
   </div>
 </section>

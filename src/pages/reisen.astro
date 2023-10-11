@@ -1,0 +1,43 @@
+---
+import config from "@config/config.json";
+import Base from "@layouts/Base.astro";
+import Icon from "@layouts/components/Icon.astro";
+import { markdownify } from "@lib/utils/textConverter";
+import { getEntryBySlug } from "astro:content";
+import Polarsteps from "src/components/Polarsteps.astro";
+import CallToAction from "src/components/CallToAction.astro"
+
+export const prerender = true;
+
+const entry = await getEntryBySlug("pages", "contact");
+const { address, email, phone } = config.contactinfo;
+const { title, description, meta_title, image } = entry.data;
+---
+
+<Base
+  title={"Unsere Reisen"}
+  meta_title={"Unsere Reisen"}
+  description={"Hier siehst Du wir wir bereits waren und wo wir noch hin wollen."}
+  image={image}
+>
+  <section class="section">
+    <div class="container">
+      <h1 set:html={markdownify("Unsere Reisen")} class="h2 page-heading" />
+
+      <p>
+        Planst Du ebenfalls eine Weltreise und möchtest Dich ein wenig inspirieren lassen? 
+        Hier findest Du unsere Reisepläne und aktuellen Reiseziele mit kurzen Updates.
+      </p>
+
+      <center class="my-4">
+        <a class="btn bg-primary text-white py-2 my-2 mx-2" href="/reisen/aron_und_daria">
+          Reise von Daria & Aron
+        </a>
+
+        <a class="btn bg-primary text-white py-2 my-2 mx-2" href="/reisen/michi_und_ines">
+          Reise von Michi & Ines
+        </a>
+      </center>
+    </div>
+  </section>
+</Base>

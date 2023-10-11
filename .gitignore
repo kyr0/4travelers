@@ -3,7 +3,7 @@ dist/
 .output/
 .yarn/
 .history/
-
+.vercel/
 
 # dependencies
 node_modules/

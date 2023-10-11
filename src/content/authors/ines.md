@@ -1,6 +1,7 @@
 ---
 title: Ines
 image: ../../images/authors/ines.jpg
+journeyLink: /reisen/michi_und_ines
 description: als Geographin möchte ich die Welt mit einem anderen Blick kennen lernen und gerne mit euch teilen
 social:
   facebook: https://www.facebook.com/
