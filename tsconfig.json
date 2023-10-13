@@ -1,9 +1,6 @@
 {
   "extends": "astro/tsconfigs/base",
-  "include": [
-    "functions/**/*",
-    "src/**/*"
-  ],
+  "include": ["functions/**/*", "src/**/*"],
   "compilerOptions": {
     "jsx": "react-jsx",
     "baseUrl": ".",
@@ -15,9 +12,8 @@
     "paths": {
       "@layouts/*": ["./src/layouts/*"],
       "@components/*": ["./src/layouts/components/*"],
-      "@client-components/*": [
-        "./src/client-components/*"
-      ],
+      "@overrides/*": ["./src/overrides/*"],
+      "@client-components/*": ["./src/client-components/*"],
       "@partials/*": ["./src/layouts/partials/*"],
       "@shortcodes/*": ["./src/layouts/shortcodes/*"],
       "@config/*": ["./src/config/*"],

@@ -1,0 +1,62 @@
+---
+import { downloadFontCSS } from "astro-google-fonts-optimizer/font-utils";
+import { promises as fs, existsSync } from "fs";
+
+import { IS_PRODUCTION_BUILD } from "../../astro.config.mjs";
+import { createHash } from "crypto";
+
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+export interface Props {
+  url: string[] | string;
+}
+const props = Astro.props as Props;
+const urls = Array.isArray(props.url) ? props.url : [props.url];
+
+const cachedFiles = urls.map((url) => ({
+  url,
+  filename: createHash("sha256").update(url.toString()).digest("hex") + ".css",
+}));
+
+let contents: Array<string> = (
+  await Promise.all(
+    cachedFiles.map(async ({ url, filename }) => {
+      const cssFileCachePath = join(__dirname, filename);
+      try {
+        //should not exist in production
+        if (existsSync(cssFileCachePath)) {
+          return fs.readFile(cssFileCachePath);
+        }
+        const cssData = await downloadFontCSS(url);
+        fs.writeFile(cssFileCachePath, cssData);
+        return cssData;
+      } catch (e) {
+        console.error(`Failed to download font css`, url);
+        if (IS_PRODUCTION_BUILD) {
+          throw e;
+        }
+      }
+    })
+  )
+).filter((v) => !!v) as Array<string>;
+---
+
+{
+  contents.length > 0 && (
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="anonymous"
+    />
+  )
+}
+{
+  contents.map((styles) => (
+    <>
+      <style type="text/css" set:html={styles} is:inline />
+    </>
+  ))
+}
