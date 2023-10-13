@@ -1,6 +1,7 @@
 ---
 import { downloadFontCSS } from "astro-google-fonts-optimizer/font-utils";
 import { promises as fs, existsSync } from "fs";
+import { relative } from "path";
 
 import { IS_PRODUCTION_BUILD } from "../../astro.config.mjs";
 import { createHash } from "crypto";
@@ -24,17 +25,19 @@ const cachedFiles = urls.map((url) => ({
 let contents: Array<string> = (
   await Promise.all(
     cachedFiles.map(async ({ url, filename }) => {
-      const cssFileCachePath = join(__dirname, filename);
+      const cssFileCachePath = join(__dirname, "fonts-cache", filename);
       try {
         if (existsSync(cssFileCachePath)) {
-          console.log("getting google font css from cache " + cssFileCachePath);
+          console.log(
+            "cached css " + relative(join(__dirname, ".."), cssFileCachePath)
+          );
           return fs.readFile(cssFileCachePath);
         }
         const cssData = await downloadFontCSS(url);
         fs.writeFile(cssFileCachePath, cssData);
         return cssData;
       } catch (e) {
-        console.error(`Failed to download google font css`, url);
+        console.error(`failed to download google font css`, url);
         if (IS_PRODUCTION_BUILD) {
           throw e;
         }

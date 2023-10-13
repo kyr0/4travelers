@@ -23,31 +23,34 @@ export async function downloadImage(
   const hash = createHash("sha256").update(src).digest("hex");
   const filePathPrefix = `${hash}_${width}_${height}`;
 
-  if (!IS_PRODUCTION_BUILD) {
-    console.log("getting image from cache");
-    const files = await fs.readdir(POSTS_PATH);
-    const found = files.find((f) => f.startsWith(filePathPrefix));
-    if (found) {
-      return `${POST_RETURN_PATH}${found}`;
-    } else {
-      return `${POST_RETURN_PATH}image_not_found.jpg`;
-    }
-  } else {
+  const files = await fs.readdir(POSTS_PATH);
+  const found = files.find((f) => f.startsWith(filePathPrefix));
+  if (found) {
+    console.log(`cached img ${POST_RETURN_PATH}${found}`);
+    return `${POST_RETURN_PATH}${found}`;
+  }
+
+  try {
     const response = await fetch(src);
     if (!response.ok) {
       throw new Error(`Failed to fetch ${src}`);
     }
-
-    const blob = await response.blob();
-    const buffer = Buffer.from(await blob.arrayBuffer());
-    const fileType = await fileTypeFromBuffer(buffer);
-    const filename = `${filePathPrefix}.${fileType?.ext}`;
-    const filepath = `${POSTS_PATH}${filename}`;
-
-    if (!(await fileExists(filepath))) {
-      await fs.writeFile(filepath, buffer, { encoding: "binary" });
-      console.log(`Downloaded image saved as ${filepath}`);
+  } catch (e) {
+    if (IS_PRODUCTION_BUILD) {
+      throw e;
     }
-    return `${POST_RETURN_PATH}${filepath}`;
+    return `${POST_RETURN_PATH}image_not_found.jpg`;
   }
+
+  const blob = await response.blob();
+  const buffer = Buffer.from(await blob.arrayBuffer());
+  const fileType = await fileTypeFromBuffer(buffer);
+  const filename = `${filePathPrefix}.${fileType?.ext}`;
+  const filepath = `${POSTS_PATH}${filename}`;
+
+  if (!(await fileExists(filepath))) {
+    await fs.writeFile(filepath, buffer, { encoding: "binary" });
+    console.log(`Downloaded image saved as ${filepath}`);
+  }
+  return `${POST_RETURN_PATH}${filepath}`;
 }
