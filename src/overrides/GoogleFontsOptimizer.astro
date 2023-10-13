@@ -26,15 +26,15 @@ let contents: Array<string> = (
     cachedFiles.map(async ({ url, filename }) => {
       const cssFileCachePath = join(__dirname, filename);
       try {
-        //should not exist in production
         if (existsSync(cssFileCachePath)) {
+          console.log("getting google font css from cache " + cssFileCachePath);
           return fs.readFile(cssFileCachePath);
         }
         const cssData = await downloadFontCSS(url);
         fs.writeFile(cssFileCachePath, cssData);
         return cssData;
       } catch (e) {
-        console.error(`Failed to download font css`, url);
+        console.error(`Failed to download google font css`, url);
         if (IS_PRODUCTION_BUILD) {
           throw e;
         }
