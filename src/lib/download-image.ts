@@ -35,22 +35,22 @@ export async function downloadImage(
     if (!response.ok) {
       throw new Error(`Failed to fetch ${src}`);
     }
+
+    const blob = await response.blob();
+    const buffer = Buffer.from(await blob.arrayBuffer());
+    const fileType = await fileTypeFromBuffer(buffer);
+    const filename = `${filePathPrefix}.${fileType?.ext}`;
+    const filepath = `${POSTS_PATH}${filename}`;
+
+    if (!(await fileExists(filepath))) {
+      await fs.writeFile(filepath, buffer, { encoding: "binary" });
+      console.log(`Downloaded image saved as ${filepath}`);
+    }
+    return `${POST_RETURN_PATH}${filepath}`;
   } catch (e) {
     if (IS_PRODUCTION_BUILD) {
       throw e;
     }
     return `${POST_RETURN_PATH}image_not_found.jpg`;
   }
-
-  const blob = await response.blob();
-  const buffer = Buffer.from(await blob.arrayBuffer());
-  const fileType = await fileTypeFromBuffer(buffer);
-  const filename = `${filePathPrefix}.${fileType?.ext}`;
-  const filepath = `${POSTS_PATH}${filename}`;
-
-  if (!(await fileExists(filepath))) {
-    await fs.writeFile(filepath, buffer, { encoding: "binary" });
-    console.log(`Downloaded image saved as ${filepath}`);
-  }
-  return `${POST_RETURN_PATH}${filepath}`;
 }
