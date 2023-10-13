@@ -14,8 +14,6 @@ import vercel from "@astrojs/vercel/static";
 import { writeFile } from "fs/promises";
 import { resolve } from "path";
 
-export const IS_PRODUCTION_BUILD = process.env.VERCEL_ENV === "production";
-
 // writes a last update timestamp for the post web notification feature to
 // be able to detect new posts
 export const lastUpdateTime = () => {

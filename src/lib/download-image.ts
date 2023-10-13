@@ -1,7 +1,8 @@
 import { createHash } from "crypto";
 import { promises as fs } from "fs";
 import { fileTypeFromBuffer } from "file-type";
-import { IS_PRODUCTION_BUILD } from "../../astro.config.mjs";
+import { IS_PRODUCTION_BUILD } from "@config/variables";
+
 const IMAGES_PATH = "./src/images/";
 const POSTS_PATH = `${IMAGES_PATH}posts/`;
 const POST_RETURN_PATH = "/images/posts/";
@@ -25,7 +26,7 @@ export async function downloadImage(
 
   const files = await fs.readdir(POSTS_PATH);
   const found = files.find((f) => f.startsWith(filePathPrefix));
-  if (found) {
+  if (found && !IS_PRODUCTION_BUILD) {
     console.log(`cached img ${POST_RETURN_PATH}${found}`);
     return `${POST_RETURN_PATH}${found}`;
   }
