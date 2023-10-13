@@ -1,6 +1,6 @@
 ---
 import { downloadImage } from "@lib/download-image";
-import { Image, getImage } from "astro:assets";
+import { Image } from "astro:assets";
 
 export interface Props {
   src: string;
@@ -84,8 +84,8 @@ if (typeof src === "undefined") {
 
 // cache
 const cachedFile = await downloadImage(src, width, height);
-// relational path
-const cachedImage = (await import(".." + cachedFile)).default;
+//getting the images
+const cachedImage = await import(/* @vite-ignore */ ".." + cachedFile);
 ---
 
 <style>
@@ -96,7 +96,7 @@ const cachedImage = (await import(".." + cachedFile)).default;
 <center>
   <figure>
     <Image
-      src={cachedImage}
+      src={cachedImage.default}
       data-google-photo
       alt={alt}
       width={width!}
